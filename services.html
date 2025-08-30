@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - CT Infosec</title>
+    <meta name="description" content="Comprehensive cybersecurity services including VAPT, digital forensics, incident response, and compliance management.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- Mouse follower elements -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+    
+    <!-- Particle system background -->
+    <div class="particle-system" id="particle-system"></div>
+    
+    <!-- Navigation -->
+    <nav class="nav-container" id="nav-container">
+        <div class="nav-logo">
+            <a href="index.html">
+                <img src="assets/logo.png" alt="CT Infosec Logo" class="logo">
+                <span class="logo-text">CT Infosec</span>
+            </a>
+        </div>
+        <div class="nav-menu" id="nav-menu">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="services.html" class="nav-link active">Services</a>
+            <a href="training.html" class="nav-link">Training</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <div class="nav-toggle" id="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="header-content hero-content">
+                <h1 class="page-title">Cybersecurity Services</h1>
+                <p class="page-subtitle">Comprehensive security solutions to protect, investigate, and strengthen your digital infrastructure</p>
+                <div class="service-nav">
+                    <a href="#assessment" class="service-nav-link">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Assessment</span>
+                    </a>
+                    <a href="#forensics" class="service-nav-link">
+                        <i class="fas fa-search"></i>
+                        <span>Forensics</span>
+                    </a>
+                    <a href="#compliance" class="service-nav-link">
+                        <i class="fas fa-clipboard-check"></i>
+                        <span>Compliance</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Assessment Services -->
+    <section id="assessment" class="service-section">
+        <div class="container">
+            <div class="section-content">
+                <div class="service-hero">
+                    <div class="service-icon-large">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h2 class="service-title">Security Assessment</h2>
+                    <p class="service-description">Comprehensive security testing and vulnerability analysis to identify weaknesses and strengthen your defenses</p>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-bug"></i>
+                            </div>
+                            <h3>Vulnerability Assessment & Penetration Testing</h3>
+                        </div>
+                        <div class="service-card-content">
+                            <p>Comprehensive security testing across your entire infrastructure to identify and exploit vulnerabilities before attackers do.</p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i> Network & Application Security Testing</li>
+                                <li><i class="fas fa-check"></i> Web Application Penetration Testing</li>
+                                <li><i class="fas fa-check"></i> Mobile Application Security Assessment</li>
+                                <li><i class="fas fa-check"></i> Infrastructure Vulnerability Assessment</li>
+                                <li><i class="fas fa-check"></i> Social Engineering Testing</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <h3>Network Security Audit</h3>
+                        </div>
+                        <div class="service-card-content">
+                            <p>Detailed examination of network architecture, configurations, and security controls to ensure robust protection.</p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i> Network Architecture Review</li>
+                                <li><i class="fas fa-check"></i> Firewall Configuration Assessment</li>
+                                <li><i class="fas fa-check"></i> Network Segmentation Analysis</li>
+                                <li><i class="fas fa-check"></i> Wireless Security Testing</li>
+                                <li><i class="fas fa-check"></i> Network Monitoring Setup</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <h3>Cloud Security Assessment</h3>
+                        </div>
+                        <div class="service-card-content">
+                            <p>Comprehensive evaluation of cloud infrastructure security, configurations, and compliance across AWS, Azure, and GCP.</p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i> Cloud Infrastructure Security Review</li>
+                                <li><i class="fas fa-check"></i> Container Security Assessment</li>
+                                <li><i class="fas fa-check"></i> API Security Testing</li>
+                                <li><i class="fas fa-check"></i> Cloud Configuration Management</li>
+                                <li><i class="fas fa-check"></i> DevSecOps Implementation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital Forensics & Incident Response -->
+    <section id="forensics" class="service-section">
+        <div class="container">
+            <div class="section-content">
+                <div class="service-hero">
+                    <div class="service-icon-large">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h2 class="service-title">Digital Forensics & Incident Response</h2>
+                    <p class="service-description">Expert investigation and response services to handle security incidents and extract digital evidence</p>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-hdd"></i>
+                            </div>
+                            <h3>Digital Forensics Investigation</h3>
+                        </div>
+                        <div class="service-card-content">
+                            <p>Comprehensive digital evidence collection, analysis, and reporting for legal and internal investigations.</p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i> Computer & Mobile Device Forensics</li>
+                                <li><i class="fas fa-check"></i> Network Traffic Analysis</li>
+                                <li><i class="fas fa-check"></i> Memory Forensics</li>
+                                <li><i class="fas fa-check"></i> Email & Communication Analysis</li>
+                                <li><i class="fas fa-check"></i> Court-Admissible Reports</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <h3>Incident Response</h3>
+                        </div>
+                        <div class="service-card-content">
+                            <p>Rapid response to security incidents with containment, eradication, and recovery strategies.</p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i> 24/7 Incident Response</li>
+                                <li><i class="fas fa-check"></i> Malware Analysis & Removal</li>
+                                <li><i class="fas fa-check"></i> Breach Investigation</li>
+                                <li><i class="fas fa-check"></i> Evidence Preservation</li>
+                                <li><i class="fas fa-check"></i> Recovery Planning</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-virus"></i>
+                            </div>
+                            <h3>Malware Analysis</h3>
+                        </div>
+                        <div class="service-card-content">
+                            <p>Advanced malware reverse engineering and behavior analysis to understand threats and develop countermeasures.</p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i> Static & Dynamic Analysis</li>
+                                <li><i class="fas fa-check"></i> Reverse Engineering</li>
+                                <li><i class="fas fa-check"></i> IOC Development</li>
+                                <li><i class="fas fa-check"></i> Threat Intelligence</li>
+                                <li><i class="fas fa-check"></i> Custom Detection Rules</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compliance & Risk Management -->
+    <section id="compliance" class="service-section">
+        <div class="container">
+            <div class="section-content">
+                <div class="service-hero">
+                    <div class="service-icon-large">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h2 class="service-title">Compliance & Risk Management</h2>
+                    <p class="service-description">Comprehensive compliance frameworks and risk management strategies to meet regulatory requirements</p>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <h3>ISO 27001 Implementation</h3>
+                        </div>
+                        <div class="service-card-content">
+                            <p>Complete ISO 27001 Information Security Management System implementation and certification support.</p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i> Gap Analysis & Roadmap</li>
+                                <li><i class="fas fa-check"></i> ISMS Documentation</li>
+                                <li><i class="fas fa-check"></i> Risk Assessment Framework</li>
+                                <li><i class="fas fa-check"></i> Internal Audit Program</li>
+                                <li><i class="fas fa-check"></i> Certification Support</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Risk Assessment & Management</h3>
+                        </div>
+                        <div class="service-card-content">
+                            <p>Comprehensive risk identification, assessment, and management strategies tailored to your business needs.</p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i> Business Risk Assessment</li>
+                                <li><i class="fas fa-check"></i> Threat Modeling</li>
+                                <li><i class="fas fa-check"></i> Risk Register Development</li>
+                                <li><i class="fas fa-check"></i> Mitigation Strategies</li>
+                                <li><i class="fas fa-check"></i> Continuous Monitoring</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-gavel"></i>
+                            </div>
+                            <h3>Regulatory Compliance</h3>
+                        </div>
+                        <div class="service-card-content">
+                            <p>Expert guidance on meeting various regulatory requirements including GDPR, PCI DSS, and industry-specific standards.</p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i> GDPR Compliance Program</li>
+                                <li><i class="fas fa-check"></i> PCI DSS Assessment</li>
+                                <li><i class="fas fa-check"></i> HIPAA Security Implementation</li>
+                                <li><i class="fas fa-check"></i> SOX IT Controls</li>
+                                <li><i class="fas fa-check"></i> Industry-Specific Compliance</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content section-content">
+                <h2>Ready to Strengthen Your Security?</h2>
+                <p>Contact our cybersecurity experts to discuss your specific requirements and develop a customized security strategy.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary">Get Free Consultation</a>
+                    <a href="training.html" class="btn btn-secondary">Explore Training</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/logo.png" alt="CT Infosec Logo" class="logo">
+                        <span class="logo-text">CT Infosec</span>
+                    </div>
+                    <p class="footer-description">
+                        Delivering credentialed cybersecurity services to help organizations defend, investigate, comply, and thrive.
+                    </p>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-envelope"></i> ct.informationsec@gmail.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Kolkata, West Bengal – 700010</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#assessment">Security Assessment</a></li>
+                        <li><a href="#forensics">Digital Forensics</a></li>
+                        <li><a href="#compliance">Compliance & Risk</a></li>
+                        <li><a href="training.html">Training Programs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Training</h4>
+                    <ul>
+                        <li><a href="training.html#ethical-hacking">Ethical Hacking</a></li>
+                        <li><a href="training.html#digital-forensics">Digital Forensics</a></li>
+                        <li><a href="training.html#dfir">DFIR Specialist</a></li>
+                        <li><a href="training.html#malware-analysis">Malware Analysis</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#certifications">Certifications</a></li>
+                        <li><a href="#projects">Case Studies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-text">
+                    <p>&copy; 2024 CT Infosec. All rights reserved. | Registered MSME</p>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/mouse-effects.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>
