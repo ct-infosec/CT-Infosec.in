@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CT Infosec - Conquer Threats. Command Defense.</title>
+    <meta name="description" content="CT Infosec delivers credentialed cybersecurity services including VAPT, digital forensics, incident response, and compliance management.">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo_1756552503575.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Background Grid -->
+    <div class="bg-grid"></div>
+    
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="{{ url_for('static', filename='images/logo_1756552503575.png') }}" alt="CT Infosec Logo" class="logo">
+                <span class="logo-text">CT Infosec</span>
+            </div>
+            
+            <div class="nav-experimental">
+                <div class="nav-orb" data-section="hero"></div>
+                <div class="nav-orb" data-section="services"></div>
+                <div class="nav-orb" data-section="about"></div>
+                <div class="nav-orb" data-section="contact"></div>
+            </div>
+            
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-badge">Registered MSME • Cybersecurity Specialists</div>
+            <h1 class="hero-title">
+                <span class="hero-line">Conquer</span>
+                <span class="hero-line highlight">Threats.</span>
+                <span class="hero-line">Command</span>
+                <span class="hero-line highlight">Defense.</span>
+            </h1>
+            <p class="hero-description">
+                CT Infosec delivers credentialed cybersecurity services to help organizations conquer threats and command defense in today's digital landscape.
+            </p>
+            <div class="hero-cta">
+                <button class="btn-primary" onclick="scrollToSection('services')">
+                    Explore Services
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <button class="btn-secondary" onclick="scrollToSection('contact')">
+                    Get Assessment
+                    <i class="fas fa-shield-alt"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Cybersecurity Services</h2>
+                <p class="section-subtitle">Comprehensive security solutions tailored to your organization's needs</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Security Assessment -->
+                <div class="service-card" data-tilt>
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Security Assessment</h3>
+                    <p>Comprehensive VAPT, architecture reviews, and social engineering assessments aligned with MITRE ATT&CK and NIST frameworks.</p>
+                    <div class="service-features">
+                        <span class="feature-tag">VAPT</span>
+                        <span class="feature-tag">Network Architecture</span>
+                        <span class="feature-tag">Social Engineering</span>
+                    </div>
+                    <div class="service-overlay">
+                        <h4>What's Included:</h4>
+                        <ul>
+                            <li>Internal/External Network Testing</li>
+                            <li>Web/Mobile/Cloud Applications</li>
+                            <li>OT/SCADA & IoT Security</li>
+                            <li>Configuration Reviews</li>
+                            <li>Executive Reporting</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Digital Forensics -->
+                <div class="service-card" data-tilt>
+                    <div class="service-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>Digital Forensics & IR</h3>
+                    <p>Expert digital forensics investigations and 24/7 incident response services with legally defensible reporting.</p>
+                    <div class="service-features">
+                        <span class="feature-tag">DFIR</span>
+                        <span class="feature-tag">Evidence Recovery</span>
+                        <span class="feature-tag">24/7 Response</span>
+                    </div>
+                    <div class="service-overlay">
+                        <h4>Capabilities:</h4>
+                        <ul>
+                            <li>PC, Mobile & Server Forensics</li>
+                            <li>RAM & Cloud Evidence</li>
+                            <li>Incident Containment</li>
+                            <li>Root Cause Analysis</li>
+                            <li>Disaster Recovery</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Compliance -->
+                <div class="service-card" data-tilt>
+                    <div class="service-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Compliance & Risk</h3>
+                    <p>Regulatory alignment with ISO 27001, PCI DSS, GDPR, RBI, HIPAA, and SOC 2 standards.</p>
+                    <div class="service-features">
+                        <span class="feature-tag">ISO 27001</span>
+                        <span class="feature-tag">PCI DSS</span>
+                        <span class="feature-tag">GDPR</span>
+                    </div>
+                    <div class="service-overlay">
+                        <h4>Services:</h4>
+                        <ul>
+                            <li>Compliance Dashboards</li>
+                            <li>Policy Development</li>
+                            <li>Training Programs</li>
+                            <li>Audit Preparation</li>
+                            <li>Maturity Assessment</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">Expert Team</h2>
+                    <p class="about-description">
+                        Our certified team brings expertise in ethical hacking, network architecture, forensics, compliance, and strategic security advisory across government, BFSI, manufacturing, and healthcare sectors.
+                    </p>
+                    
+                    <div class="credentials">
+                        <h3>Team Credentials</h3>
+                        <div class="credential-grid">
+                            <div class="credential-item">
+                                <i class="fas fa-user-shield"></i>
+                                <div>
+                                    <strong>Aditya Giri</strong>
+                                    <span>CEH (EC-Council)</span>
+                                </div>
+                            </div>
+                            <div class="credential-item">
+                                <i class="fas fa-mobile-alt"></i>
+                                <div>
+                                    <strong>Satyaki Das</strong>
+                                    <span>Mobile Forensics Specialist (FCCIS India)</span>
+                                </div>
+                            </div>
+                            <div class="credential-item">
+                                <i class="fas fa-network-wired"></i>
+                                <div>
+                                    <strong>Ashish Kumar Mullik & Satyaki Das</strong>
+                                    <span>CCNA Fundamentals (ISOEH)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="methodology">
+                    <h3>Engagement Methodology</h3>
+                    <div class="methodology-steps">
+                        <div class="step">
+                            <div class="step-number">01</div>
+                            <h4>Kickoff & Discovery</h4>
+                            <p>Scoping, environment mapping, stakeholder interviews</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">02</div>
+                            <h4>Assessment & Testing</h4>
+                            <p>Using CEH, CCNA, ISO frameworks</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">03</div>
+                            <h4>Reporting & Debriefing</h4>
+                            <p>Root-cause analysis, executive reports, live Q&A</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">04</div>
+                            <h4>Remediation & Follow-up</h4>
+                            <p>Action plans, workshops, re-scans</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">05</div>
+                            <h4>Ongoing Assurance</h4>
+                            <p>Regular reviews, dashboards, KPI tracking</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2 class="section-title">Get In Touch</h2>
+                    <p class="contact-description">
+                        Ready to enhance your cybersecurity posture? Contact our experts for a consultation.
+                    </p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-user"></i>
+                            <div>
+                                <strong>Project SPOC</strong>
+                                <span>Aditya Giri (Project Manager)</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong>
+                                <span>ct.informationsec@gmail.com</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Phone</strong>
+                                <span>+91 76058 57831</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Location</strong>
+                                <span>Kolkata, West Bengal – 700010</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" required>
+                            <label for="name">Full Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required>
+                            <label for="email">Email Address</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="company" name="company">
+                            <label for="company">Company (Optional)</label>
+                        </div>
+                        <div class="form-group">
+                            <select id="service_interest" name="service_interest">
+                                <option value="">Select Service Interest</option>
+                                <option value="security-assessment">Security Assessment</option>
+                                <option value="digital-forensics">Digital Forensics & IR</option>
+                                <option value="compliance">Compliance & Risk Management</option>
+                                <option value="general">General Inquiry</option>
+                            </select>
+                            <label for="service_interest">Service Interest</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" required></textarea>
+                            <label for="message">Your Message</label>
+                        </div>
+                        <button type="submit" class="btn-primary" id="submitBtn">
+                            Send Message
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="{{ url_for('static', filename='images/logo_1756552503575.png') }}" alt="CT Infosec Logo" class="footer-logo">
+                    <span class="footer-text">CT Infosec</span>
+                </div>
+                <div class="footer-tagline">
+                    Conquer Threats. Command Defense.
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com/ct-infosec" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@CyberTantra-cyt" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61578362421658" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/cytan_cyt" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
