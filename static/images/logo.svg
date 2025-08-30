@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <style>
+      .logo-circle { fill: #9ACD32; }
+      .logo-triangle { fill: #0a0a0b; }
+      .logo-accent { fill: #7CB342; }
+    </style>
+  </defs>
+  
+  <!-- Main circle background -->
+  <circle cx="100" cy="100" r="95" class="logo-circle"/>
+  
+  <!-- Triangle elements -->
+  <path d="M 60 140 L 100 60 L 140 140 Z" class="logo-triangle"/>
+  <path d="M 75 125 L 100 85 L 125 125 Z" class="logo-accent"/>
+  
+  <!-- Security shield accent -->
+  <path d="M 90 75 L 100 70 L 110 75 L 108 90 L 100 95 L 92 90 Z" class="logo-triangle"/>
+</svg>
