@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CT-InfoSec | Future-Ready Cybersecurity</title>
+    <meta name="description" content="CT-InfoSec: MSME Registered Cybersecurity, Forensics, and Governance.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 2026 DESIGN SYSTEM --- */
+        :root {
+            --bg-deep: #020204;
+            --bg-panel: #0a0a0f;
+            --primary: #00ffcc;     /* Cyber Teal */
+            --secondary: #7000ff;   /* Electric Violet */
+            --alert: #ff003c;       /* Glitch Red */
+            --text-main: #ffffff;
+            --text-dim: #8892b0;
+            
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-blur: blur(20px);
+            
+            --font-ui: 'Inter', sans-serif;
+            --font-tech: 'JetBrains Mono', monospace;
+            
+            --ease-out: cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; /* Hide default cursor */ }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: var(--font-ui);
+            overflow-x: hidden;
+            position: relative;
+            /* Phosphor Glow */
+            text-shadow: 0 0 2px rgba(0, 255, 204, 0.2); 
+            /* Hide scrolling initially */
+            overflow: hidden; 
+            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+        }
+
+        /* Allow scroll after load */
+        body.loaded { overflow-y: auto; }
+
+        /* --- 80s SCI-FI SPLASH SCREEN --- */
+        #splash-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #000;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-tech);
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        /* The CRT Monitor Container - What gets sucked in */
+        .crt-monitor {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform-style: preserve-3d;
+            background: radial-gradient(circle, #111 0%, #000 90%);
+        }
+
+        /* Animation: Black Hole Implosion (Light Speed Suck) */
+        .implode {
+            animation: black-hole-suck 0.6s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards;
+        }
+
+        @keyframes black-hole-suck {
+            0% { 
+                transform: scale(1) rotate(0deg); 
+                filter: brightness(1) contrast(1); 
+            }
+            30% {
+                /* Anticipation swelling */
+                transform: scale(1.1) rotate(-10deg);
+                filter: brightness(2) contrast(1.5) hue-rotate(45deg);
+            }
+            100% { 
+                /* The Suck */
+                transform: scale(0) rotate(1080deg); 
+                filter: brightness(50) contrast(5) blur(20px); 
+                opacity: 0; 
+            }
+        }
+
+        /* Logo Staging Area */
+        .splash-stage {
+            position: relative;
+            width: 400px;
+            max-width: 90vw; /* Mobile Safe */
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            margin-bottom: 2rem;
+        }
+
+        .logo-layer {
+            position: absolute;
+            max-width: 100%;
+            max-height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Specific sizing based on provided images */
+        .logo-1 { width: 140px; filter: drop-shadow(0 0 20px rgba(0,255,204,0.5)); }
+        .logo-2 { width: 350px; max-width: 80vw; filter: drop-shadow(0 0 15px rgba(112,0,255,0.6)); }
+
+        /* Glitch Animation Classes */
+        .glitch-active {
+            animation: violent-glitch 0.4s steps(2) infinite;
+        }
+
+        @keyframes violent-glitch {
+            0% { transform: translate(0); clip-path: inset(0 0 0 0); filter: hue-rotate(0deg); }
+            20% { transform: translate(-10px, 10px); clip-path: inset(10% 0 60% 0); filter: hue-rotate(90deg) invert(1); }
+            40% { transform: translate(10px, -10px); clip-path: inset(50% 0 10% 0); filter: hue-rotate(-90deg); }
+            60% { transform: translate(-5px, 5px); clip-path: inset(20% 0 20% 0); filter: contrast(3); }
+            80% { transform: translate(5px, -5px); clip-path: inset(80% 0 5% 0); }
+            100% { transform: translate(0); }
+        }
+
+        /* Terminal Console */
+        .terminal-console {
+            width: 80%;
+            max-width: 600px;
+            height: 150px;
+            font-size: 0.9rem;
+            color: var(--primary);
+            text-shadow: 0 0 5px var(--primary);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            position: relative;
+            z-index: 10;
+        }
+
+        .console-line { margin: 2px 0; opacity: 0.8; font-family: 'JetBrains Mono', monospace; }
+        .console-line.red { color: var(--alert); text-shadow: 0 0 8px var(--alert); font-weight: bold; }
+        .console-line.white { color: #fff; }
+
+        /* The Crack Image */
+        .screen-crack-img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            z-index: 50;
+            mix-blend-mode: screen; /* Blends glass texture onto black background */
+            pointer-events: none;
+            filter: contrast(1.2) brightness(1.2);
+        }
+
+        .crack-visible {
+            opacity: 1;
+            /* Impact Shake */
+            animation: crack-impact 0.3s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        @keyframes crack-impact {
+            10%, 90% { transform: translate3d(-2px, 0, 0) scale(1.02); }
+            20%, 80% { transform: translate3d(4px, 0, 0) scale(1.05); }
+            30%, 50%, 70% { transform: translate3d(-6px, 0, 0) scale(1.02); }
+            40%, 60% { transform: translate3d(6px, 0, 0) scale(1.05); }
+        }
+
+        /* CRT Scanlines Overlay */
+        .crt-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.5) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 100;
+            box-shadow: inset 0 0 150px rgba(0,0,0,1); /* Deep Vignette */
+        }
+
+        /* Main Content Entrance */
+        #main-content {
+            opacity: 0;
+            transform: scale(1.5);
+            filter: blur(20px);
+            transition: opacity 1.5s ease, transform 1.2s cubic-bezier(0.19, 1, 0.22, 1), filter 1.5s ease;
+        }
+        
+        body.loaded #main-content {
+            opacity: 1;
+            transform: scale(1);
+            filter: blur(0);
+        }
+
+        /* CRT OVERLAY EFFECTS FOR MAIN SITE */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: 
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 9998;
+            background-size: 100% 3px, 4px 100%;
+            pointer-events: none;
+        }
+
+        /* UTILITIES */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .section-padding { padding: 10rem 0; }
+        .mono { font-family: var(--font-tech); }
+        h1, h2, h3, h4 { font-family: var(--font-tech); text-transform: uppercase; letter-spacing: -1px; }
+        a { text-decoration: none; color: inherit; }
+
+        /* SCROLL REVEAL */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
+        }
+        .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+        
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        .delay-400 { transition-delay: 400ms; }
+
+        /* GLITCH TEXT */
+        .glitch-text {
+            position: relative;
+            color: var(--text-main);
+            mix-blend-mode: lighten;
+        }
+        .glitch-text::before, .glitch-text::after {
+            content: attr(data-text);
+            position: absolute; top: 0; width: 100%; height: 100%; opacity: 0.8; 
+        }
+        .glitch-text::before {
+            left: 2px; text-shadow: -1px 0 var(--alert); clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+        .glitch-text::after {
+            left: -2px; text-shadow: -1px 0 var(--secondary); clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim 2.5s infinite linear alternate-reverse;
+        }
+        .dud { color: var(--alert); opacity: 0.7; font-weight: 400; }
+
+        /* HEADER */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 100;
+            padding: 0.6rem 0;
+            background: rgba(2, 2, 6, 0.7);
+            backdrop-filter: blur(20px) saturate(120%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            transition: padding 0.3s;
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        
+        /* Nav Logo */
+        .logo-wrapper { position: relative; display: block; width: 250px; height: 50px; overflow: hidden; transition: width 0.3s; }
+        .logo-img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+        .logo-glitch {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0.6; mix-blend-mode: hard-light; pointer-events: none;
+        }
+        .logo-glitch.layer-1 {
+            animation: glitch-logo-1 3s infinite linear alternate-reverse;
+            filter: hue-rotate(90deg); transform: translate(-2px, 0); clip-path: inset(10% 0 80% 0);
+        }
+        .logo-glitch.layer-2 {
+            animation: glitch-logo-2 2.5s infinite linear alternate-reverse;
+            filter: hue-rotate(-90deg); transform: translate(2px, 0); clip-path: inset(80% 0 10% 0);
+        }
+
+        .nav-links { display: flex; gap: 3rem; }
+        .nav-links a { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; position: relative; }
+        .nav-links a::before {
+            content: ''; position: absolute; top: 50%; left: -15px; width: 6px; height: 6px;
+            background: var(--primary); border-radius: 50%; opacity: 0; transform: translateY(-50%); transition: opacity 0.3s;
+        }
+        .nav-links a:hover::before { opacity: 1; }
+
+        /* MOBILE MENU BTN (Hidden on Desktop) */
+        .mobile-menu-btn {
+            display: none;
+            color: var(--primary);
+            font-family: var(--font-tech);
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            padding: 0.25rem 0.75rem;
+            background: rgba(0,0,0,0.5);
+        }
+
+        /* HERO */
+        #hero {
+            height: 100vh; display: flex; flex-direction: column; justify-content: center;
+            position: relative; overflow: hidden; border-bottom: 1px solid var(--glass-border);
+        }
+        canvas#bg-canvas {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            opacity: 0.8; filter: blur(3px) brightness(0.7); transition: opacity 1s ease;
+        }
+        .hero-title {
+            font-size: clamp(2.5rem, 7vw, 8rem); line-height: 0.85; font-weight: 800;
+            margin-bottom: 2rem; z-index: 2; pointer-events: none;
+        }
+        .hero-subtitle {
+            font-size: 1.2rem; color: var(--text-dim); max-width: 500px;
+            margin-left: 5px; border-left: 2px solid var(--primary); padding-left: 20px;
+        }
+        .cursor-blink { animation: blink 1s infinite; color: var(--primary); font-weight: bold; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* SECTIONS */
+        .marquee-strip {
+            background: var(--primary); color: #000; padding: 1rem 0; overflow: hidden;
+            white-space: nowrap; font-family: var(--font-tech); font-weight: bold; font-size: 1.2rem;
+            transform: rotate(-1deg) scale(1.05); margin: 0; border-top: 1px solid #000; border-bottom: 1px solid #000;
+        }
+        .marquee-content { display: inline-block; animation: marquee 20s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        .section-title {
+            font-size: 4rem; margin-bottom: 5rem; border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 1rem; display: inline-block;
+        }
+
+        #about { display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; border-top: 1px solid var(--glass-border); margin-top: 0; }
+        .about-content { padding: 4rem 0; }
+        .stat-block { border-bottom: 1px solid var(--glass-border); padding: 2rem 0; }
+        .stat-num { font-size: 5rem; font-weight: 800; color: var(--secondary); line-height: 1; }
+        .stat-label { font-family: var(--font-tech); text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim); }
+
+        #services { background: var(--bg-deep); }
+        /* Optimized for mobile: minmax reduced to 280px */
+        .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .holo-card {
+            background: var(--glass); border: 1px solid var(--glass-border); backdrop-filter: var(--glass-blur);
+            padding: 3rem; position: relative; overflow: hidden; transition: transform 0.2s var(--ease-out), border-color 0.3s;
+            min-height: 350px; display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .holo-card:hover { border-color: var(--primary); box-shadow: 0 0 30px rgba(0, 255, 204, 0.1); z-index: 10; }
+        .holo-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.07) 0%, transparent 60%);
+            opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 1;
+        }
+        .holo-card:hover::before { opacity: 1; }
+        .holo-card::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--primary); opacity: 0; box-shadow: 0 0 10px var(--primary); transition: opacity 0.3s; z-index: 2;
+        }
+        .holo-card:hover::after { opacity: 1; animation: scan-card 2s infinite linear; }
+        @keyframes scan-card { 0% { top: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+        
+        .card-num { font-family: var(--font-tech); color: var(--glass-border); font-size: 4rem; position: absolute; top: 1rem; right: 2rem; font-weight: 800; }
+        .card-title { font-size: 1.8rem; margin-bottom: 1rem; color: var(--text-main); position: relative; z-index: 2; }
+        .card-desc { color: var(--text-dim); margin-bottom: 2rem; font-size: 0.95rem; position: relative; z-index: 2; }
+        .tech-list { display: flex; flex-wrap: wrap; gap: 0.5rem; position: relative; z-index: 2; }
+        .tech-tag {
+            font-size: 0.7rem; font-family: var(--font-tech); border: 1px solid var(--text-dim);
+            padding: 2px 8px; border-radius: 2px; color: var(--text-dim); text-transform: uppercase;
+        }
+
+        #team { background: linear-gradient(180deg, var(--bg-deep) 0%, #050508 100%); border-top: 1px solid var(--glass-border); }
+        /* Optimized for mobile: minmax reduced to 280px */
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .personnel-card {
+            background: var(--bg-panel); border: 1px solid var(--glass-border); padding: 2rem;
+            position: relative; transition: border-color 0.3s ease;
+        }
+        .personnel-card:hover { border-color: var(--secondary); }
+        .p-header { display: flex; justify-content: space-between; border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem; margin-bottom: 1.5rem; }
+        .p-status { color: #00ff00; font-size: 0.8rem; font-family: var(--font-tech); animation: blink 2s infinite; }
+        .cert-badge {
+            display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--text-main);
+            margin-bottom: 0.8rem; font-family: var(--font-tech); border-left: 2px solid var(--primary);
+            padding-left: 0.8rem; background: rgba(0, 255, 204, 0.05); padding: 0.8rem;
+        }
+
+        #contact { background: radial-gradient(circle at center, #111, #000); text-align: center; }
+        footer { border-top: 1px solid var(--glass-border); padding: 3rem 0; display: flex; justify-content: space-between; align-items: flex-end; }
+        
+        @keyframes glitch-logo-1 {
+            0%, 100% { clip-path: inset(10% 0 80% 0); transform: translate(-2px, 0); }
+            20% { clip-path: inset(80% 0 5% 0); transform: translate(2px, 0); }
+            40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 0); }
+            60% { clip-path: inset(20% 0 60% 0); transform: translate(1px, 0); }
+            80% { clip-path: inset(60% 0 20% 0); transform: translate(-1px, 0); }
+        }
+        @keyframes glitch-logo-2 {
+            0%, 100% { clip-path: inset(80% 0 10% 0); transform: translate(2px, 0); }
+            20% { clip-path: inset(10% 0 60% 0); transform: translate(-2px, 0); }
+            40% { clip-path: inset(50% 0 30% 0); transform: translate(2px, 0); }
+            60% { clip-path: inset(30% 0 20% 0); transform: translate(-1px, 0); }
+            80% { clip-path: inset(10% 0 80% 0); transform: translate(1px, 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            20% { clip: rect(12px, 9999px, 68px, 0); }
+            40% { clip: rect(89px, 9999px, 43px, 0); }
+            60% { clip: rect(3px, 9999px, 22px, 0); }
+            80% { clip: rect(45px, 9999px, 88px, 0); }
+            100% { clip: rect(98px, 9999px, 11px, 0); }
+        }
+
+        /* --- MOBILE & RESPONSIVE TWEAKS --- */
+        @media(max-width: 1024px) { 
+            .hero-title { font-size: 10vw; } 
+            #about { grid-template-columns: 1fr; } 
+        }
+
+        @media(max-width: 768px) {
+            /* Disable Custom Cursor on Touch */
+            #cursor { display: none; }
+            * { cursor: auto; }
+            
+            /* Header */
+            .logo-wrapper { width: 180px; } /* Smaller logo */
+            .nav-links { 
+                position: fixed; top: 60px; left: 0; width: 100%; background: rgba(5, 5, 10, 0.95);
+                flex-direction: column; gap: 0; border-bottom: 1px solid var(--primary);
+                transform: translateY(-150%); transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+                backdrop-filter: blur(20px);
+            }
+            .nav-links.active { transform: translateY(0); }
+            .nav-links li { width: 100%; text-align: center; }
+            .nav-links a { 
+                display: block; padding: 1.5rem 0; width: 100%; border-bottom: 1px solid var(--glass-border);
+            }
+            .nav-links a::before { display: none; } /* Remove nav dot on mobile */
+
+            .mobile-menu-btn { display: block; }
+
+            /* Spacing */
+            .section-padding { padding: 5rem 0; }
+            .container { padding: 0 1.5rem; }
+
+            /* Typography */
+            .section-title { font-size: 2.5rem; margin-bottom: 3rem; }
+            .hero-subtitle { font-size: 1rem; }
+            .holo-card { padding: 2rem; min-height: auto; }
+            .card-num { font-size: 3rem; }
+            
+            /* Contact */
+            #contact .contact-box { padding: 3rem 1.5rem; }
+            #contact a.email-link { font-size: 1.2rem; padding: 1rem; word-break: break-all; }
+        }
+
+        /* Prevent Hover Effects on Touch Devices to avoid sticky states */
+        @media (hover: none) {
+            .holo-card:hover { transform: none; box-shadow: none; border-color: var(--glass-border); }
+            .holo-card:hover::before, .holo-card:hover::after { display: none; }
+            .personnel-card:hover { border-color: var(--glass-border); }
+        }
+        
+        /* --- SIMPLE CIRCLE CURSOR --- */
+        #cursor {
+            position: fixed;
+            top: 0; left: 0;
+            width: 20px; height: 20px;
+            border: 1px solid var(--primary);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
+            mix-blend-mode: difference;
+        }
+        #cursor.hovered {
+            width: 50px; height: 50px;
+            background-color: var(--primary);
+            opacity: 0.5;
+            border-color: transparent;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CUSTOM CURSOR -->
+    <div id="cursor"></div>
+
+    <!-- 80s SCI-FI SPLASH SCREEN -->
+    <div id="splash-screen">
+        <div class="crt-overlay"></div>
+        
+        <!-- THE CRACK (Hidden initially) -->
+        <img src="https://raw.githubusercontent.com/ct-infosec/CT-Infosec.in/refs/heads/main/%E2%80%94Pngtree%E2%80%94broken%20glass%20texture%20background%20shattered_21022650.png" class="screen-crack-img" alt="Broken Screen">
+
+        <div class="crt-monitor">
+            <div class="splash-stage">
+                <!-- Logo 1: Emblem -->
+                <img src="https://raw.githubusercontent.com/ct-infosec/CT-Infosec.in/refs/heads/main/logo.png" class="logo-layer logo-1" alt="Emblem">
+                <!-- Logo 2: Text -->
+                <img src="https://raw.githubusercontent.com/ct-infosec/CT-Infosec.in/refs/heads/main/ct%20infosec%20trnp%20-%20Copy.png" class="logo-layer logo-2" alt="CT-InfoSec">
+            </div>
+
+            <div class="terminal-console" id="terminal-out">
+                <!-- Logs will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN SITE CONTENT WRAPPER -->
+    <div id="main-content">
+        <!-- HEADER -->
+        <header>
+            <div class="container">
+                <nav>
+                    <a href="#" class="logo-wrapper hover-trigger">
+                        <img src="https://raw.githubusercontent.com/ct-infosec/CT-Infosec.in/refs/heads/main/ct%20infosec%20trnsp%20wht%20-%20Copy.png" class="logo-img main" alt="CT-InfoSec">
+                        <img src="https://raw.githubusercontent.com/ct-infosec/CT-Infosec.in/refs/heads/main/ct%20infosec%20trnsp%20wht%20-%20Copy.png" class="logo-img logo-glitch layer-1" alt="">
+                        <img src="https://raw.githubusercontent.com/ct-infosec/CT-Infosec.in/refs/heads/main/ct%20infosec%20trnsp%20wht%20-%20Copy.png" class="logo-img logo-glitch layer-2" alt="">
+                    </a>
+                    
+                    <!-- Mobile Hamburger -->
+                    <div class="mobile-menu-btn" onclick="toggleMenu()">/// MENU</div>
+
+                    <ul class="nav-links" id="nav-links">
+                        <li><a href="#about" class="hover-trigger" data-scramble="true" onclick="toggleMenu()">Intel</a></li>
+                        <li><a href="#services" class="hover-trigger" data-scramble="true" onclick="toggleMenu()">Capabilities</a></li>
+                        <li><a href="#team" class="hover-trigger" data-scramble="true" onclick="toggleMenu()">Command</a></li>
+                        <li><a href="#contact" class="hover-trigger" data-scramble="true" onclick="toggleMenu()">Connect</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- HERO SECTION -->
+        <section id="hero">
+            <canvas id="bg-canvas"></canvas>
+            <div class="container">
+                <h1 class="hero-title" style="font-size: clamp(2rem, 7vw, 8rem);">
+                    <div class="glitch-text" data-text="CONQUER THREATS">CONQUER THREATS</div>
+                    <div class="glitch-text" data-text="COMMAND DEFENSE">COMMAND DEFENSE</div>
+                </h1>
+                <div class="hero-subtitle mono">
+                    // MSME REGISTERED ENTITY<br>
+                    // SYSTEMS STATUS: OPTIMAL<br>
+                    // <span class="typewriter" data-text="INITIALIZING PROTOCOLS..."></span><span class="cursor-blink">_</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- MARQUEE STRIP -->
+        <div class="marquee-strip">
+            <div class="marquee-content">
+                /// DIGITAL FORENSICS /// PENETRATION TESTING /// ISO 27001 AUDITS /// SOC OPERATIONS /// INCIDENT RESPONSE /// THREAT HUNTING /// DIGITAL FORENSICS /// PENETRATION TESTING /// ISO 27001 AUDITS /// SOC OPERATIONS ///
+            </div>
+        </div>
+
+        <!-- ABOUT GRID -->
+        <section id="about" class="container reveal-on-scroll">
+            <div class="about-content">
+                <div class="mono" style="color:var(--primary); margin-bottom:1rem;">// THE FIRM</div>
+                <h2 class="reveal-on-scroll section-title" style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom:2rem; line-height:1.1;">TRUST IS ALGORITHM<br>VERIFICATION IS KEY</h2>
+                
+                <p class="reveal-on-scroll delay-100" style="color:var(--text-dim); font-size:1rem; line-height:1.8; margin-bottom: 1.5rem;">
+                    CT-InfoSec is an MSME-registered cybersecurity consulting and managed security services organization delivering end-to-end security solutions to organizations operating in complex and high-risk digital environments. We assist enterprises in identifying security gaps, reducing cyber risk, achieving regulatory compliance, and establishing resilient security postures across on-premise, cloud, hybrid, and containerized infrastructures.
+                </p>
+                
+                <p class="reveal-on-scroll delay-200" style="color:var(--text-dim); font-size:1rem; line-height:1.8; margin-bottom: 2rem;">
+                    Our service portfolio encompasses cybersecurity assessment and testing, governance and compliance, managed security operations, incident response, security advisory, and professional training. By combining deep technical expertise with industry best practices and regulatory alignment, CT-InfoSec enables organizations to protect critical assets and maintain operational continuity.
+                </p>
+
+                <div class="reveal-on-scroll delay-300" style="border-left: 2px solid var(--primary); padding-left: 1.5rem;">
+                    <h4 style="color: var(--text-main); margin-bottom: 1rem; font-size: 1.1rem;">CORPORATE CREDENTIALS</h4>
+                    <ul style="list-style: none; color: var(--text-dim); font-family: var(--font-tech); font-size: 0.85rem; line-height: 1.6;">
+                        <li style="margin-bottom: 0.5rem;">> MSME Registered Enterprise (Govt. of India)</li>
+                        <li style="margin-bottom: 0.5rem;">> Cybersecurity Consulting & Managed Services Provider</li>
+                        <li>> Expertise across Enterprise, Cloud, Hybrid & Containers</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="reveal-on-scroll delay-400" style="border-left: 1px solid var(--glass-border); padding-left: 3rem; display: flex; flex-direction: column; justify-content: center;">
+                <div class="stat-block">
+                    <div class="stat-num">500+</div>
+                    <div class="stat-label">Systems Secured</div>
+                </div>
+                <div class="stat-block">
+                    <div class="stat-num">0</div>
+                    <div class="stat-label">Breaches Post-Audit</div>
+                </div>
+                <div class="stat-block" style="border:none">
+                    <div class="stat-num">24/7</div>
+                    <div class="stat-label">Active Surveillance</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section id="services" class="section-padding">
+            <div class="container">
+                <h2 class="section-title reveal-on-scroll">CORE_MODULES</h2>
+                
+                <div class="bento-grid">
+                    <!-- Card 1 -->
+                    <div class="holo-card hover-trigger reveal-on-scroll delay-100">
+                        <span class="card-num">01</span>
+                        <div class="icon" style="font-size:2rem; margin-bottom:1rem; color:var(--primary)">◈</div>
+                        <h3 class="card-title">Offensive Security</h3>
+                        <p class="card-desc">Simulating advanced persistent threats to validate your defense mechanisms.</p>
+                        <div class="tech-list">
+                            <span class="tech-tag">VAPT</span>
+                            <span class="tech-tag">RED TEAMING</span>
+                            <span class="tech-tag">CODE REVIEW</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="holo-card hover-trigger reveal-on-scroll delay-200">
+                        <span class="card-num">02</span>
+                        <div class="icon" style="font-size:2rem; margin-bottom:1rem; color:var(--secondary)">❖</div>
+                        <h3 class="card-title">Governance</h3>
+                        <p class="card-desc">Architecting compliance frameworks that align with global standards.</p>
+                        <div class="tech-list">
+                            <span class="tech-tag">ISO 27001</span>
+                            <span class="tech-tag">GDPR</span>
+                            <span class="tech-tag">RISK AUDIT</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="holo-card hover-trigger reveal-on-scroll delay-300">
+                        <span class="card-num">03</span>
+                        <div class="icon" style="font-size:2rem; margin-bottom:1rem; color:var(--alert)">✜</div>
+                        <h3 class="card-title">Forensics</h3>
+                        <p class="card-desc">Recovering artifacts and tracing attribution in the aftermath of a breach.</p>
+                        <div class="tech-list">
+                            <span class="tech-tag">INCIDENT RESPONSE</span>
+                            <span class="tech-tag">DATA RECOVERY</span>
+                            <span class="tech-tag">MALWARE ANALYSIS</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="holo-card hover-trigger reveal-on-scroll delay-400">
+                        <span class="card-num">04</span>
+                        <div class="icon" style="font-size:2rem; margin-bottom:1rem; color:white">◉</div>
+                        <h3 class="card-title">Managed SOC</h3>
+                        <p class="card-desc">24/7 Eyes on glass. Continuous monitoring of your digital estate.</p>
+                        <div class="tech-list">
+                            <span class="tech-tag">SIEM</span>
+                            <span class="tech-tag">XDR</span>
+                            <span class="tech-tag">THREAT INTEL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERT TEAM SECTION -->
+        <section id="team" class="section-padding">
+            <div class="container">
+                <div class="mono reveal-on-scroll" style="color:var(--secondary); margin-bottom:1rem;">// PERSONNEL CLEARANCE</div>
+                <h2 class="section-title reveal-on-scroll">OPERATIONAL COMMAND</h2>
+                <p class="reveal-on-scroll delay-100" style="color:var(--text-dim); max-width: 600px; margin-bottom: 3rem;">
+                    Our unit comprises elite specialists with verified credentials in offensive security, forensics, and AI defense.
+                </p>
+
+                <div class="team-grid">
+                    <!-- Expert Profile 1: Offensive & Cloud -->
+                    <div class="personnel-card hover-trigger reveal-on-scroll delay-200">
+                        <div class="p-header">
+                            <span class="mono" style="color:white; font-weight:bold;">UNIT LEAD // OFFENSIVE</span>
+                            <span class="p-status">ACTIVE</span>
+                        </div>
+                        <div class="p-body">
+                            <div class="cert-badge">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--alert)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                                Certified Ethical Hacker (CEH)
+                            </div>
+                            <div class="cert-badge">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+                                Kali Linux & Offensive Ops
+                            </div>
+                            <div class="cert-badge">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20"></path><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                                Dark Web & Anonymity
+                            </div>
+                            <p style="margin-top:1.5rem; font-size:0.9rem; color:var(--text-dim);">
+                                Specializing in Red Teaming operations, VAPT, and securing cloud infrastructures against advanced threats.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Expert Profile 2: Governance & Strategy -->
+                    <div class="personnel-card hover-trigger reveal-on-scroll delay-300">
+                        <div class="p-header">
+                            <span class="mono" style="color:white; font-weight:bold;">UNIT LEAD // DEFENSE</span>
+                            <span class="p-status">ACTIVE</span>
+                        </div>
+                        <div class="p-body">
+                            <div class="cert-badge">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                                SOC Operations & SIEM
+                            </div>
+                            <div class="cert-badge">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                                ISO/IEC 27001:2022 ISMS
+                            </div>
+                            <div class="cert-badge">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                IAM Strategy & Solutions
+                            </div>
+                            <p style="margin-top:1.5rem; font-size:0.9rem; color:var(--text-dim);">
+                                Expertise in regulatory frameworks, SIEM architecture, and enterprise risk auditing.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Expert Profile 3: Forensics & Future Tech -->
+                    <div class="personnel-card hover-trigger reveal-on-scroll delay-400">
+                        <div class="p-header">
+                            <span class="mono" style="color:white; font-weight:bold;">UNIT LEAD // FORENSICS</span>
+                            <span class="p-status">ACTIVE</span>
+                        </div>
+                        <div class="p-body">
+                            <div class="cert-badge">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                                Cellebrite UFED Specialist
+                            </div>
+                            <div class="cert-badge">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"></path><path d="m2 22 5-5"></path><path d="m22 22-5-5"></path><path d="M12 12a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z"></path></svg>
+                                Master LLM Security & AI
+                            </div>
+                            <div class="cert-badge">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                Cyber Threat Intelligence
+                            </div>
+                            <p style="margin-top:1.5rem; font-size:0.9rem; color:var(--text-dim);">
+                                Pioneering defense strategies for AI/LLM vectors and deep-dive mobile forensic recovery.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="section-padding reveal-on-scroll">
+            <div class="container">
+                <div class="contact-box hover-trigger" style="border: 1px solid var(--glass-border); background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); padding: 5rem 2rem; max-width: 900px; margin: 0 auto; text-align: center;">
+                    <h2 class="reveal-on-scroll" style="font-size: clamp(1.8rem, 5vw, 4rem); margin-bottom:2rem; font-family: var(--font-tech); color: var(--text-main);">SECURE_CHANNEL</h2>
+                    <p class="mono reveal-on-scroll delay-100" style="color:var(--text-dim); margin-bottom: 3rem;">
+                        // ENCRYPTED TRANSMISSION LINE READY<br>
+                        // AWAITING INPUT
+                    </p>
+                    
+                    <a href="mailto:ct.informationsec@gmail.com" class="email-link reveal-on-scroll delay-200" data-text="ct.informationsec@gmail.com" style="display: inline-block; font-size: clamp(0.9rem, 4vw, 3rem); font-family: var(--font-tech); color: var(--primary); text-decoration: none; position: relative; padding: 1rem 2rem; border: 1px solid var(--primary); transition: all 0.3s;">
+                        ct.informationsec@gmail.com
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="container reveal-on-scroll">
+            <div class="mono" style="color:var(--text-dim); font-size:0.8rem;">
+                <img src="https://raw.githubusercontent.com/ct-infosec/CT-Infosec.in/refs/heads/main/msme-seeklogo.png" alt="MSME Registered" style="height: 50px; width: auto; margin-bottom: 1rem; display: block;">
+                © 2026 CT-INFOSEC<br>
+                ALL RIGHTS RESERVED.<br>
+                MSME REG: #8829-XJ
+            </div>
+            <div style="display:flex; gap:2rem; flex-wrap: wrap;">
+                <a href="#" class="mono hover-trigger">LINKEDIN</a>
+                <a href="#" class="mono hover-trigger">TWITTER</a>
+                <a href="mailto:ct.informationsec@gmail.com" class="mono hover-trigger">ct.informationsec@gmail.com</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // --- MOBILE MENU TOGGLE ---
+        function toggleMenu() {
+            const nav = document.getElementById('nav-links');
+            nav.classList.toggle('active');
+        }
+
+        // --- CYBER SCRAMBLE CLASS ---
+        class CyberScramble {
+            constructor(el) {
+                this.el = el;
+                this.chars = '!<>-_\\/[]{}—=+*^?#________';
+                this.update = this.update.bind(this);
+            }
+
+            setText(newText) {
+                const oldText = this.el.innerText;
+                const length = Math.max(oldText.length, newText.length);
+                const promise = new Promise((resolve) => this.resolve = resolve);
+                this.queue = [];
+                for (let i = 0; i < length; i++) {
+                    const from = oldText[i] || '';
+                    const to = newText[i] || '';
+                    const start = Math.floor(Math.random() * 40);
+                    const end = start + Math.floor(Math.random() * 40);
+                    this.queue.push({ from, to, start, end });
+                }
+                cancelAnimationFrame(this.frameRequest);
+                this.frame = 0;
+                this.update();
+                return promise;
+            }
+
+            update() {
+                let output = '';
+                let complete = 0;
+                for (let i = 0, n = this.queue.length; i < n; i++) {
+                    let { from, to, start, end, char } = this.queue[i];
+                    if (this.frame >= end) {
+                        complete++;
+                        output += to;
+                    } else if (this.frame >= start) {
+                        if (!char || Math.random() < 0.28) {
+                            char = this.randomChar();
+                            this.queue[i].char = char;
+                        }
+                        output += `<span class="dud">${char}</span>`;
+                    } else {
+                        output += from;
+                    }
+                }
+                this.el.innerHTML = output;
+                if (complete === this.queue.length) {
+                    if (this.resolve) this.resolve();
+                } else {
+                    this.frameRequest = requestAnimationFrame(this.update);
+                    this.frame++;
+                }
+            }
+
+            randomChar() {
+                return this.chars[Math.floor(Math.random() * this.chars.length)];
+            }
+        }
+
+        // --- SPLASH SCREEN BOOT SEQUENCE ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const terminalOut = document.getElementById('terminal-out');
+            const logo1 = document.querySelector('.logo-1');
+            const logo2 = document.querySelector('.logo-2');
+            const splashScreen = document.getElementById('splash-screen');
+            const crtMonitor = document.querySelector('.crt-monitor');
+            const crackImage = document.querySelector('.screen-crack-img');
+            const body = document.body;
+
+            // Simple preloader for the heavy crack image
+            const imgPreload = new Image();
+            imgPreload.src = crackImage.src;
+
+            // Audio simulation logic (Visual only)
+            const addLog = (text, type = 'normal') => {
+                const p = document.createElement('div');
+                p.className = `console-line ${type}`;
+                p.innerText = `> ${text}`;
+                terminalOut.appendChild(p);
+                terminalOut.scrollTop = terminalOut.scrollHeight;
+            };
+
+            // Sequence Timeline
+            const runSequence = async () => {
+                // 1. Initial Logs (0s - 1.5s)
+                addLog("INITIALIZING BIOS...");
+                await new Promise(r => setTimeout(r, 200));
+                addLog("CHECKING MEMORY INTEGRITY... OK");
+                await new Promise(r => setTimeout(r, 200));
+                addLog("LOADING KERNEL... V.2.0.26");
+                await new Promise(r => setTimeout(r, 400));
+                addLog("CONNECTING TO SECURE GATEWAY...");
+                
+                // 2. Logo 1 Fades In (1.5s)
+                logo1.style.opacity = 1;
+                await new Promise(r => setTimeout(r, 1000));
+
+                // 3. Glitch Swap (2.5s)
+                addLog("DECRYPTING IDENTITY...", "white");
+                logo1.classList.add('glitch-active');
+                await new Promise(r => setTimeout(r, 400));
+                
+                logo1.style.opacity = 0;
+                logo1.classList.remove('glitch-active');
+                
+                logo2.style.opacity = 1;
+                logo2.classList.add('glitch-active'); // Glitch in
+                await new Promise(r => setTimeout(r, 600));
+                logo2.classList.remove('glitch-active'); // Stabilize
+
+                // 4. Critical Failure (4.5s)
+                await new Promise(r => setTimeout(r, 800));
+                addLog("WARNING: ANOMALY DETECTED", "red");
+                await new Promise(r => setTimeout(r, 200));
+                addLog("SYSTEM INTEGRITY FAILURE", "red");
+                await new Promise(r => setTimeout(r, 200));
+                addLog("REALITY BREACH IMMINENT...", "red");
+
+                // 5. THE CRACK (5.7s)
+                await new Promise(r => setTimeout(r, 500));
+                crackImage.classList.add('crack-visible');
+                
+                // 6. Black Hole Suck (6.0s)
+                await new Promise(r => setTimeout(r, 200));
+                crtMonitor.classList.add('implode');
+
+                // 7. Reveal Main Site (6.8s)
+                setTimeout(() => {
+                    splashScreen.style.display = 'none';
+                    body.classList.add('loaded');
+                    initMainSite();
+                }, 800);
+            };
+
+            // Start sequence after short delay
+            setTimeout(runSequence, 500);
+        });
+
+        // Function to initialize main site animations AFTER splash
+        function initMainSite() {
+            // Global mouse tracking variables
+            let mouseX = -100;
+            let mouseY = -100;
+            let currentX = -100;
+            let currentY = -100;
+
+            // --- 1. MOUSE & TOUCH TRACKING ---
+            const updateMousePosition = (e) => {
+                if (e.type.startsWith('touch')) {
+                    const touch = e.touches[0];
+                    mouseX = touch.clientX;
+                    mouseY = touch.clientY;
+                } else {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                }
+            };
+            
+            document.addEventListener('mousemove', updateMousePosition);
+            document.addEventListener('touchmove', updateMousePosition);
+
+            // --- 3. CURSOR LOGIC ---
+            const cursor = document.getElementById('cursor');
+            const triggers = document.querySelectorAll('.hover-trigger');
+            
+            let isHovering = false;
+
+            const renderLoop = () => {
+                // Smooth interpolation for cursor (lag effect)
+                const dx = mouseX - currentX;
+                const dy = mouseY - currentY;
+                
+                currentX += dx * 0.2; // Slightly tighter control than 0.15
+                currentY += dy * 0.2;
+                
+                // Move Cursor Element
+                cursor.style.left = currentX + 'px';
+                cursor.style.top = currentY + 'px';
+                
+                requestAnimationFrame(renderLoop);
+            };
+            renderLoop();
+
+            // Hover Listeners for Active State
+            triggers.forEach(trigger => {
+                trigger.addEventListener('mouseenter', () => {
+                    isHovering = true;
+                    cursor.classList.add('hovered');
+                });
+                trigger.addEventListener('mouseleave', () => {
+                    isHovering = false;
+                    cursor.classList.remove('hovered');
+                });
+            });
+
+
+            // --- 4. MATRIX RAIN INTERACTION (Canvas) ---
+            const canvas = document.getElementById('bg-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            let width, height;
+            let columns;
+            let drops = [];
+            
+            const fontSize = 16;
+            const chars = "01XYZ{}[]<>/\\*&^%$#@!CT_INFOSEC"; 
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+                columns = Math.ceil(width / fontSize);
+                
+                const currentDropsLength = drops.length;
+                if (columns > currentDropsLength) {
+                    for (let i = currentDropsLength; i < columns; i++) {
+                        drops[i] = Math.random() * -100;
+                    }
+                }
+            }
+            window.addEventListener('resize', resize);
+            
+            resize();
+            for (let i = 0; i < columns; i++) {
+                drops[i] = Math.random() * -100;
+            }
+
+            function draw() {
+                // Fade effect
+                ctx.fillStyle = 'rgba(2, 2, 4, 0.05)'; 
+                ctx.fillRect(0, 0, width, height);
+
+                ctx.font = 'bold ' + fontSize + 'px "JetBrains Mono"';
+                
+                for (let i = 0; i < drops.length; i++) {
+                    const x = i * fontSize;
+                    const y = drops[i] * fontSize;
+
+                    // INTERACTION LOGIC
+                    let dist = 1000;
+                    if(mouseX > 0 && mouseY > 0) {
+                         const dx = x - mouseX;
+                         const dy = y - mouseY;
+                         dist = Math.sqrt(dx*dx + dy*dy);
+                    }
+
+                    if (dist < 150) {
+                        ctx.fillStyle = '#ffffff'; 
+                        ctx.font = 'bold ' + (fontSize + 2) + 'px "JetBrains Mono"';
+                        if(Math.random() > 0.8) ctx.fillStyle = '#ff003c'; 
+                    } else {
+                        const rand = Math.random();
+                        if (rand > 0.98) ctx.fillStyle = '#ffffff'; 
+                        else if (rand > 0.6) ctx.fillStyle = '#00ffcc'; 
+                        else ctx.fillStyle = '#7000ff'; 
+                        ctx.font = 'bold ' + fontSize + 'px "JetBrains Mono"';
+                    }
+                    
+                    const text = chars[Math.floor(Math.random() * chars.length)];
+                    ctx.fillText(text, x, y);
+
+                    if (y > height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+
+                    if (dist < 150) {
+                        drops[i] += 2; 
+                    } else {
+                        drops[i]++;
+                    }
+                }
+
+                requestAnimationFrame(draw);
+            }
+            draw();
+
+            // --- 5. TILT EFFECT FOR CARDS & SPOTLIGHT ---
+            const cards = document.querySelectorAll('.holo-card');
+
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    card.style.setProperty('--x', `${x}px`);
+                    card.style.setProperty('--y', `${y}px`);
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * -5;
+                    const rotateY = ((x - centerX) / centerX) * 5;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+                });
+            });
+
+            // --- 6. SCROLL REVEAL OBSERVER ---
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const scrollObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        scrollObserver.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+                scrollObserver.observe(el);
+            });
+
+            // --- 7. TYPEWRITER EFFECT ---
+            const typeText = document.querySelector('.typewriter');
+            if(typeText) {
+                const text = typeText.getAttribute('data-text');
+                typeText.innerText = '';
+                let i = 0;
+                function type() {
+                    if (i < text.length) {
+                        typeText.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(type, 50); 
+                    }
+                }
+                setTimeout(type, 1000); 
+            }
+
+            // Apply Scramble Effects
+            const heroTitles = document.querySelectorAll('.glitch-text');
+            heroTitles.forEach(el => {
+                const scramble = new CyberScramble(el);
+                setTimeout(() => {
+                    scramble.setText(el.getAttribute('data-text')); 
+                }, 600);
+            });
+
+            const sectionTitles = document.querySelectorAll('.section-title');
+            const titleObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const scramble = new CyberScramble(entry.target);
+                        scramble.setText(entry.target.innerText);
+                        titleObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            sectionTitles.forEach(el => titleObserver.observe(el));
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                const original = link.innerText;
+                const scramble = new CyberScramble(link);
+                link.addEventListener('mouseenter', () => {
+                    scramble.setText(original);
+                });
+            });
+
+            const emailLink = document.querySelector('.email-link');
+            if(emailLink) {
+                const emailObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const scramble = new CyberScramble(entry.target);
+                            scramble.setText(entry.target.getAttribute('data-text'));
+                            emailObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                emailObserver.observe(emailLink);
+
+                const scramble = new CyberScramble(emailLink);
+                emailLink.addEventListener('mouseenter', () => {
+                    emailLink.style.background = "rgba(0, 255, 204, 0.1)";
+                    emailLink.style.boxShadow = "0 0 20px rgba(0, 255, 204, 0.3)";
+                    scramble.setText(emailLink.getAttribute('data-text'));
+                });
+                emailLink.addEventListener('mouseleave', () => {
+                    emailLink.style.background = "transparent";
+                    emailLink.style.boxShadow = "none";
+                });
+            }
+        }
+    </script>
+</body>
+</html>
