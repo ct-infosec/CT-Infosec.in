@@ -377,7 +377,7 @@
             height: 100%;
             position: relative;
             transform-style: preserve-3d;
-            transition: transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.1); /* Bouncy, physical spin */
+            transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth, realistic spin */
             will-change: transform;
         }
         .coin-face {
@@ -397,7 +397,9 @@
         .coin-img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* Forces both images to scale equally within the box */
         }
 
         .cursor-blink { animation: blink 1s infinite; color: var(--primary); font-weight: bold; }
@@ -626,6 +628,12 @@
             #cursor { display: none !important; }
             * { cursor: auto !important; }
             
+            /* Hero Coin Flip Mobile */
+            .coin-container {
+                width: 25vw;
+                height: 25vw;
+            }
+
             /* Tools Ribbon Mobile Fixes */
             .tools-ribbon { padding: 2rem 0; }
             .tool-logo { height: 30px; max-width: 120px; }
