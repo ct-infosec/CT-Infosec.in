@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CT-InfoSec | Cyber Tantra Information Security | VAPT, SOC & GRC</title>
+    <meta name="description" content="CT-InfoSec (Cyber Tantra Information Security Pvt Ltd) is an MSME-registered Infosec provider in India. We specialize in VAPT, WAPT, SOC, GRC, and DFIR.">
+    <meta name="keywords" content="ct, ctinfosec, ct-infosec, cybertantra, cyber tantra, cyber tantra infosec, infosec, india, cyber tantra information security, cyber tantra information security pvt ltd, infosec india, vapt, wapt, grc, soc, dfir, msme, msme infosec">
+    <meta property="og:title" content="CT-InfoSec | Cyber Tantra Information Security Pvt Ltd">
+    <meta property="og:description" content="Leading MSME Infosec provider in India offering VAPT, WAPT, SOC, GRC, and DFIR services.">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 2026 DESIGN SYSTEM --- */
+        :root {
+            --bg-deep: #020204;
+            --bg-panel: #0a0a0f;
+            --primary: #00ffcc;     /* Cyber Teal */
+            --secondary: #7000ff;   /* Electric Violet */
+            --alert: #ff003c;       /* Glitch Red */
+            --text-main: #ffffff;
+            --text-dim: #8892b0;
+            
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-blur: blur(20px);
+            
+            --font-ui: 'Inter', sans-serif;
+            --font-tech: 'JetBrains Mono', monospace;
+            
+            --ease-out: cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; /* Hide default cursor */ }
+
+        html { 
+            scroll-behavior: smooth; 
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: var(--font-ui);
+            overflow-x: hidden;
+            max-width: 100%;
+            position: relative;
+            /* Phosphor Glow */
+            text-shadow: 0 0 2px rgba(0, 255, 204, 0.2); 
+            /* Hide scrolling initially */
+            overflow: hidden; 
+            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+        }
+
+        /* Allow scroll after load */
+        body.loaded { overflow-y: auto; }
+
+        /* --- 80s SCI-FI SPLASH SCREEN --- */
+        #splash-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100dvh;
+            background: #000;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-tech);
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        /* The CRT Monitor Container - What gets sucked in */
+        .crt-monitor {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform-style: preserve-3d;
+            background: radial-gradient(circle, #111 0%, #000 90%);
+        }
+
+        /* Animation: Black Hole Implosion (Light Speed Suck) */
+        .implode {
+            animation: black-hole-suck 0.6s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards;
+        }
+
+        @keyframes black-hole-suck {
+            0% { 
+                transform: scale(1) rotate(0deg); 
+                filter: brightness(1) contrast(1); 
+            }
+            30% {
+                /* Anticipation swelling */
+                transform: scale(1.1) rotate(-10deg);
+                filter: brightness(2) contrast(1.5) hue-rotate(45deg);
+            }
+            100% { 
+                /* The Suck */
+                transform: scale(0) rotate(1080deg); 
+                filter: brightness(50) contrast(5) blur(20px); 
+                opacity: 0; 
+            }
+        }
+
+        /* Logo Staging Area */
+        .splash-stage {
+            position: relative;
+            width: 400px;
+            max-width: 85vw; /* Mobile Safe */
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            margin-bottom: 2rem;
+        }
+
+        .logo-layer {
+            position: absolute;
+            max-width: 100%;
+            max-height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Specific sizing based on provided images */
+        .logo-1 { width: 140px; filter: drop-shadow(0 0 20px rgba(0,255,204,0.5)); }
+        .logo-2 { width: 350px; max-width: 80vw; filter: drop-shadow(0 0 15px rgba(112,0,255,0.6)); }
+
+        /* Glitch Animation Classes */
+        .glitch-active {
+            animation: violent-glitch 0.4s steps(2) infinite;
+        }
+
+        @keyframes violent-glitch {
+            0% { transform: translate(0); clip-path: inset(0 0 0 0); filter: hue-rotate(0deg); }
+            20% { transform: translate(-10px, 10px); clip-path: inset(10% 0 60% 0); filter: hue-rotate(90deg) invert(1); }
+            40% { transform: translate(10px, -10px); clip-path: inset(50% 0 10% 0); filter: hue-rotate(-90deg); }
+            60% { transform: translate(-5px, 5px); clip-path: inset(20% 0 20% 0); filter: contrast(3); }
+            80% { transform: translate(5px, -5px); clip-path: inset(80% 0 5% 0); }
+            100% { transform: translate(0); }
+        }
+
+        /* Terminal Console */
+        .terminal-console {
+            width: 80%;
+            max-width: 600px;
+            height: 150px;
+            font-size: 0.9rem;
+            color: var(--primary);
+            text-shadow: 0 0 5px var(--primary);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            position: relative;
+            z-index: 10;
+        }
+
+        .console-line { margin: 2px 0; opacity: 0.8; font-family: 'JetBrains Mono', monospace; word-wrap: break-word; }
+        .console-line.red { color: var(--alert); text-shadow: 0 0 8px var(--alert); font-weight: bold; }
+        .console-line.white { color: #fff; }
+
+        /* The Crack Image */
+        .screen-crack-img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            z-index: 50;
+            mix-blend-mode: screen; /* Blends glass texture onto black background */
+            pointer-events: none;
+            filter: contrast(1.2) brightness(1.2);
+        }
+
+        .crack-visible {
+            opacity: 1;
+            /* Impact Shake */
+            animation: crack-impact 0.3s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        @keyframes crack-impact {
+            10%, 90% { transform: translate3d(-2px, 0, 0) scale(1.02); }
+            20%, 80% { transform: translate3d(4px, 0, 0) scale(1.05); }
+            30%, 50%, 70% { transform: translate3d(-6px, 0, 0) scale(1.02); }
+            40%, 60% { transform: translate3d(6px, 0, 0) scale(1.05); }
+        }
+
+        /* CRT Scanlines Overlay */
+        .crt-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.5) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 100;
+            box-shadow: inset 0 0 150px rgba(0,0,0,1); /* Deep Vignette */
+        }
+
+        /* Main Content Entrance */
+        #main-content {
+            opacity: 0;
+            transform: scale(1.5);
+            filter: blur(20px);
+            transition: opacity 1.5s ease, transform 1.2s cubic-bezier(0.19, 1, 0.22, 1), filter 1.5s ease;
+        }
+        
+        body.loaded #main-content {
+            opacity: 1;
+            transform: scale(1);
+            filter: blur(0);
+        }
+
+        /* CRT OVERLAY EFFECTS FOR MAIN SITE */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: 
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 9998;
+            background-size: 100% 3px, 4px 100%;
+            pointer-events: none;
+        }
+
+        /* UTILITIES */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .section-padding { padding: 10rem 0; }
+        .mono { font-family: var(--font-tech); }
+        h1, h2, h3, h4 { font-family: var(--font-tech); text-transform: uppercase; letter-spacing: -1px; }
+        a { text-decoration: none; color: inherit; }
+
+        /* SCROLL REVEAL */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
+            will-change: opacity, transform;
+        }
+        .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+        
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        .delay-400 { transition-delay: 400ms; }
+
+        /* GLITCH TEXT */
+        .glitch-text {
+            position: relative;
+            color: var(--text-main);
+            mix-blend-mode: lighten;
+        }
+        .glitch-text::before, .glitch-text::after {
+            content: attr(data-text);
+            position: absolute; top: 0; width: 100%; height: 100%; opacity: 0.8; 
+        }
+        .glitch-text::before {
+            left: 2px; text-shadow: -1px 0 var(--alert); clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+        .glitch-text::after {
+            left: -2px; text-shadow: -1px 0 var(--secondary); clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim 2.5s infinite linear alternate-reverse;
+        }
+        .dud { color: var(--alert); opacity: 0.7; font-weight: 400; }
+
+        /* HEADER */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 100;
+            padding: 0.6rem 0;
+            background: rgba(2, 2, 6, 0.7);
+            backdrop-filter: blur(20px) saturate(120%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            transition: padding 0.3s;
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        
+        /* Nav Logo */
+        .logo-wrapper { position: relative; display: block; width: 250px; height: 50px; overflow: hidden; transition: width 0.3s; }
+        .logo-img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+        .logo-glitch {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0.6; mix-blend-mode: hard-light; pointer-events: none;
+        }
+        .logo-glitch.layer-1 {
+            animation: glitch-logo-1 3s infinite linear alternate-reverse;
+            filter: hue-rotate(90deg); transform: translate(-2px, 0); clip-path: inset(10% 0 80% 0);
+        }
+        .logo-glitch.layer-2 {
+            animation: glitch-logo-2 2.5s infinite linear alternate-reverse;
+            filter: hue-rotate(-90deg); transform: translate(2px, 0); clip-path: inset(80% 0 10% 0);
+        }
+
+        .nav-links { display: flex; gap: 3rem; }
+        .nav-links a { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; position: relative; }
+        .nav-links a::before {
+            content: ''; position: absolute; top: 50%; left: -15px; width: 6px; height: 6px;
+            background: var(--primary); border-radius: 50%; opacity: 0; transform: translateY(-50%); transition: opacity 0.3s;
+        }
+        .nav-links a:hover::before { opacity: 1; }
+
+        /* MOBILE MENU BTN (Hidden on Desktop) */
+        .mobile-menu-btn {
+            display: none;
+            color: var(--primary);
+            font-family: var(--font-tech);
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            padding: 0.5rem 1rem; /* Better touch target */
+            background: rgba(0,0,0,0.5);
+            border-radius: 4px;
+        }
+
+        /* HERO */
+        #hero {
+            height: 100dvh; display: flex; flex-direction: column; justify-content: center;
+            position: relative; overflow: hidden; border-bottom: 1px solid var(--glass-border);
+        }
+        canvas#bg-canvas {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            opacity: 0.8; filter: blur(3px) brightness(0.7); transition: opacity 1s ease;
+        }
+        .hero-brand {
+            font-size: clamp(1.8rem, 4vw, 3.5rem);
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            letter-spacing: 4px;
+            font-weight: 800;
+            z-index: 2;
+            position: relative;
+            min-height: 1.5em; /* Prevents layout jumping */
+            text-align: center;
+            width: 100%;
+            text-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+        }
+        .hero-title {
+            font-size: clamp(2.2rem, 6vw, 8rem); line-height: 0.85; font-weight: 800;
+            margin-bottom: 2rem; z-index: 2; pointer-events: none;
+            text-align: center;
+            width: 100%;
+        }
+        .hero-subtitle {
+            font-size: clamp(0.9rem, 2vw, 1.2rem); color: var(--text-dim); max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* --- COIN FLIP ANIMATION --- */
+        .coin-container {
+            width: 15vw;
+            height: 15vw;
+            perspective: 1000px;
+            margin: 0 auto 2rem auto;
+            z-index: 5;
+            position: relative;
+        }
+        .coin-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth, realistic spin */
+            will-change: transform;
+        }
+        .coin-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: drop-shadow(0 10px 15px rgba(0, 255, 204, 0.2));
+        }
+        .coin-back {
+            transform: rotateY(180deg);
+            filter: drop-shadow(0 10px 15px rgba(255, 255, 255, 0.15));
+        }
+        .coin-img {
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* Forces both images to scale equally within the box */
+        }
+
+        .cursor-blink { animation: blink 1s infinite; color: var(--primary); font-weight: bold; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* SECTIONS */
+        .marquee-strip {
+            background: var(--primary); color: #000; padding: 1rem 0; overflow: hidden;
+            white-space: nowrap; font-family: var(--font-tech); font-weight: bold; font-size: 1.2rem;
+            transform: rotate(-1deg) scale(1.05); margin: 0; border-top: 1px solid #000; border-bottom: 1px solid #000;
+        }
+        .marquee-content { 
+            display: inline-block; 
+            animation: marquee 20s linear infinite; 
+            will-change: transform; /* HW Accel */
+        }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* --- TOOLS RIBBON MARQUEE (Pastel #8ca7d1 Matte Mirror Effect) --- */
+        .tools-ribbon {
+            background: #8ca7d1; /* Base color fallback */
+            background: linear-gradient(180deg, #a2bce2 0%, #8ca7d1 20%, #7592be 50%, #8ca7d1 80%, #a2bce2 100%); 
+            border-top: 1px solid rgba(255, 255, 255, 0.6);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.7);
+            box-shadow: inset 0 8px 20px rgba(255,255,255,0.4), inset 0 -8px 20px rgba(0,0,0,0.3), 0 10px 30px rgba(0,0,0,0.8); 
+            padding: 3.5rem 0;
+            overflow: hidden;
+            position: relative;
+            width: 100vw;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            z-index: 10;
+        }
+        .tools-ribbon-title {
+            text-align: center;
+            font-family: var(--font-tech);
+            color: #ffffff;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            margin-bottom: 2.5rem;
+        }
+        .tools-track-wrapper {
+            display: flex;
+            width: max-content;
+            animation: scroll-tools 45s linear infinite; /* Smooth auto-scrolling */
+            will-change: transform; /* HW Accel */
+        }
+        .tools-ribbon:hover .tools-track-wrapper {
+            animation-play-state: paused; /* Pause on hover */
+        }
+        @keyframes scroll-tools {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Scroll exactly half to loop perfectly */
+        }
+        .tools-track {
+            display: flex;
+            align-items: center;
+            gap: 4.5rem;
+            padding-right: 4.5rem; /* Must match gap exactly for seamless scroll loop */
+        }
+        .tool-logo {
+            height: 45px;
+            max-width: 200px;
+            object-fit: contain;
+            position: relative;
+            /* Faded dual-shadow that elevates both dark and light icons on the pastel background */
+            filter: drop-shadow(0px 8px 12px rgba(0,0,0,0.4)) drop-shadow(0px 0px 15px rgba(255,255,255,0.7)); 
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease;
+            cursor: pointer;
+        }
+        .tool-logo:hover {
+            transform: scale(1.2) translateY(-6px); /* Pops out from background */
+            filter: drop-shadow(0px 15px 20px rgba(0,0,0,0.6)) drop-shadow(0px 0px 25px rgba(255,255,255,1)) brightness(1.1); 
+            z-index: 50;
+        }
+
+        .section-title {
+            font-size: 4rem; margin-bottom: 5rem; border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 1rem; display: inline-block;
+        }
+
+        #about { display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; border-top: 1px solid var(--glass-border); margin-top: 0; }
+        .about-content { padding: 4rem 0; }
+        .stat-block { border-bottom: 1px solid var(--glass-border); padding: 2rem 0; }
+        .stat-num { font-size: 5rem; font-weight: 800; color: var(--secondary); line-height: 1; }
+        .stat-label { font-family: var(--font-tech); text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim); }
+
+        #services { background: var(--bg-deep); }
+        .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .holo-card {
+            background: var(--glass); border: 1px solid var(--glass-border); backdrop-filter: var(--glass-blur);
+            padding: 3rem; position: relative; overflow: hidden; transition: transform 0.2s var(--ease-out), border-color 0.3s;
+            min-height: 350px; display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .holo-card:hover { border-color: var(--primary); box-shadow: 0 0 30px rgba(0, 255, 204, 0.1); z-index: 10; }
+        .holo-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.07) 0%, transparent 60%);
+            opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 1;
+        }
+        .holo-card:hover::before { opacity: 1; }
+        .holo-card::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--primary); opacity: 0; box-shadow: 0 0 10px var(--primary); transition: opacity 0.3s; z-index: 2;
+        }
+        .holo-card:hover::after { opacity: 1; animation: scan-card 2s infinite linear; }
+        @keyframes scan-card { 0% { top: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+        
+        .card-num { font-family: var(--font-tech); color: var(--glass-border); font-size: 4rem; position: absolute; top: 1rem; right: 2rem; font-weight: 800; }
+        .card-title { font-size: 1.8rem; margin-bottom: 1rem; color: var(--text-main); position: relative; z-index: 2; }
+        .card-desc { color: var(--text-dim); margin-bottom: 2rem; font-size: 0.95rem; position: relative; z-index: 2; line-height: 1.6; }
+        .tech-list { display: flex; flex-wrap: wrap; gap: 0.5rem; position: relative; z-index: 2; }
+        .tech-tag {
+            font-size: 0.7rem; font-family: var(--font-tech); border: 1px solid var(--text-dim);
+            padding: 2px 8px; border-radius: 2px; color: var(--text-dim); text-transform: uppercase;
+        }
+
+        #team { background: linear-gradient(180deg, var(--bg-deep) 0%, #050508 100%); border-top: 1px solid var(--glass-border); }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .personnel-card {
+            background: var(--bg-panel); border: 1px solid var(--glass-border); padding: 2rem;
+            position: relative; transition: border-color 0.3s ease;
+        }
+        .personnel-card:hover { border-color: var(--secondary); }
+        .p-header { display: flex; justify-content: space-between; border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem; margin-bottom: 1.5rem; }
+        .p-status { color: #00ff00; font-size: 0.8rem; font-family: var(--font-tech); animation: blink 2s infinite; }
+        .cert-badge {
+            display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--text-main);
+            margin-bottom: 0.8rem; font-family: var(--font-tech); border-left: 2px solid var(--primary);
+            padding-left: 0.8rem; background: rgba(0, 255, 204, 0.05); padding: 0.8rem;
+        }
+
+        #contact { background: radial-gradient(circle at center, #111, #000); text-align: center; }
+        footer { border-top: 1px solid var(--glass-border); padding: 3rem 0; display: flex; justify-content: space-between; align-items: flex-end; }
+        
+        @keyframes glitch-logo-1 {
+            0%, 100% { clip-path: inset(10% 0 80% 0); transform: translate(-2px, 0); }
+            20% { clip-path: inset(80% 0 5% 0); transform: translate(2px, 0); }
+            40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 0); }
+            60% { clip-path: inset(20% 0 60% 0); transform: translate(1px, 0); }
+            80% { clip-path: inset(60% 0 20% 0); transform: translate(-1px, 0); }
+        }
+        @keyframes glitch-logo-2 {
+            0%, 100% { clip-path: inset(80% 0 10% 0); transform: translate(2px, 0); }
+            20% { clip-path: inset(10% 0 60% 0); transform: translate(-2px, 0); }
+            40% { clip-path: inset(50% 0 30% 0); transform: translate(2px, 0); }
+            60% { clip-path: inset(30% 0 20% 0); transform: translate(-1px, 0); }
+            80% { clip-path: inset(10% 0 80% 0); transform: translate(1px, 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            20% { clip: rect(12px, 9999px, 68px, 0); }
+            40% { clip: rect(89px, 9999px, 43px, 0); }
+            60% { clip: rect(3px, 9999px, 22px, 0); }
+            80% { clip: rect(45px, 9999px, 88px, 0); }
+            100% { clip: rect(98px, 9999px, 11px, 0); }
+        }
+
+        /* --- SIMPLE CIRCLE CURSOR --- */
+        #cursor {
+            position: fixed;
+            top: 0; left: 0;
+            width: 20px; height: 20px;
+            border: 1px solid var(--primary);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 999999; /* Increased to remain visible above open modals */
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
+            mix-blend-mode: difference;
+            will-change: transform, left, top;
+        }
+        #cursor.hovered {
+            width: 50px; height: 50px;
+            background-color: var(--primary);
+            opacity: 0.5;
+            border-color: transparent;
+        }
+
+        /* --- CYBER MODAL STYLES --- */
+        #cyber-modal {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100dvh; /* dvh for mobile */
+            background: rgba(2, 2, 6, 0.85); backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 100000; display: none; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.4s ease; padding: 1.5rem;
+        }
+        #cyber-modal.active { display: flex; opacity: 1; }
+        .modal-content {
+            background: var(--bg-panel); border: 1px solid var(--primary);
+            box-shadow: 0 0 40px rgba(0, 255, 204, 0.15); max-width: 800px; width: 100%;
+            max-height: 90vh; display: flex; flex-direction: column;
+            position: relative; overflow: hidden; transform: translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        #cyber-modal.active .modal-content { transform: translateY(0); }
+        .modal-header {
+            border-bottom: 1px solid var(--glass-border); padding: 1.5rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(0, 255, 204, 0.05);
+        }
+        .modal-close {
+            color: var(--primary); font-family: var(--font-tech); cursor: pointer;
+            font-size: 1.2rem; background: none; border: none; outline: none; transition: 0.3s;
+            padding: 0.5rem;
+        }
+        .modal-close:hover { color: var(--alert); text-shadow: 0 0 10px var(--alert); transform: scale(1.1); }
+        .modal-body { padding: 2rem; overflow-y: auto; }
+        .modal-title { font-size: 2.2rem; margin-bottom: 0.5rem; color: var(--text-main); font-family: var(--font-tech); text-transform: uppercase; }
+        .modal-subtitle { color: var(--secondary); font-family: var(--font-tech); margin-bottom: 1.5rem; font-size: 0.9rem; letter-spacing: 2px;}
+        .modal-desc { color: var(--text-dim); line-height: 1.8; margin-bottom: 2rem; font-size: 1.05rem; }
+        
+        .clickable-card { cursor: pointer; }
+
+        /* --- CYBER DOSSIER STATS & ANIMATIONS --- */
+        .cyber-stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+            padding: 0.8rem 0;
+            font-family: var(--font-tech);
+        }
+        .cyber-stat-row:last-child { border-bottom: none; }
+        .cyber-stat-label { color: var(--text-dim); font-size: 0.75rem; letter-spacing: 1px; }
+        .cyber-stat-value { color: var(--text-main); font-size: 0.85rem; font-weight: 600; text-align: right; max-width: 65%; }
+        
+        .card-laser {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--primary);
+            box-shadow: 0 0 15px var(--primary);
+            opacity: 0;
+            animation: scan-vertical 4s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+        @keyframes scan-vertical {
+            0% { top: -10%; opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { top: 110%; opacity: 0; }
+        }
+
+        /* --- SOCIAL BUTTONS --- */
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--primary);
+            background: rgba(0, 255, 204, 0.05);
+            color: var(--primary);
+            font-family: var(--font-tech);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .social-btn:hover {
+            background: var(--primary);
+            color: var(--bg-deep);
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* --- MOBILE & RESPONSIVE TWEAKS --- */
+        @media(max-width: 1024px) { 
+            #about { grid-template-columns: 1fr; } 
+        }
+
+        @media(max-width: 768px) {
+            /* Disable Custom Cursor strictly on Touch */
+            #cursor { display: none !important; }
+            * { cursor: auto !important; }
+            
+            /* Hero Coin Flip Mobile */
+            .coin-container {
+                width: 25vw;
+                height: 25vw;
+            }
+
+            /* Tools Ribbon Mobile Fixes */
+            .tools-ribbon { padding: 2rem 0; }
+            .tool-logo { height: 30px; max-width: 120px; }
+            .tools-track { gap: 2rem; padding-right: 2rem; }
+
+            /* Header & Nav */
+            .logo-wrapper { width: 160px; } /* Smaller logo */
+            .nav-links { 
+                position: fixed; top: 60px; left: 0; width: 100%; background: rgba(5, 5, 10, 0.95);
+                flex-direction: column; gap: 0; border-bottom: 1px solid var(--primary);
+                transform: translateY(-150%); transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+                backdrop-filter: blur(20px);
+            }
+            .nav-links.active { transform: translateY(0); }
+            .nav-links li { width: 100%; text-align: center; }
+            .nav-links a { 
+                display: block; padding: 1.5rem 0; width: 100%; border-bottom: 1px solid var(--glass-border);
+            }
+            .nav-links a::before { display: none; }
+
+            .mobile-menu-btn { display: block; }
+
+            /* Spacing overrides for mobile */
+            .section-padding { padding: 4rem 0; }
+            .container { padding: 0 1.2rem; }
+
+            /* Typography */
+            .section-title { font-size: 2.2rem; margin-bottom: 2.5rem; }
+            .holo-card { padding: 1.8rem; min-height: auto; }
+            .card-num { font-size: 2.5rem; }
+            
+            /* Contact */
+            #contact .contact-box { padding: 2.5rem 1rem; }
+            #contact a.email-link { font-size: 1rem; padding: 0.8rem; word-break: break-all; }
+            
+            .social-btn { padding: 0.6rem 1rem; font-size: 0.8rem; width: 100%; }
+
+            /* Modal Mobile Optimizations */
+            #cyber-modal { padding: 1rem; }
+            #cyber-modal .modal-content { max-height: 95dvh; border-width: 1px; }
+            #cyber-modal .modal-header { padding: 1rem; }
+            #cyber-modal .modal-body { padding: 1.2rem; }
+            #cyber-modal .modal-title { font-size: 1.5rem; }
+            #cyber-modal .modal-subtitle { font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 1rem; }
+            #cyber-modal .modal-desc { font-size: 0.95rem; margin-bottom: 1.5rem; }
+        }
+
+        /* Prevent Hover Effects on Touch Devices to avoid sticky hover states */
+        @media (hover: none) and (pointer: coarse) {
+            .holo-card:hover { transform: none; box-shadow: none; border-color: var(--glass-border); }
+            .holo-card:hover::before, .holo-card:hover::after { display: none; }
+            .personnel-card:hover { border-color: var(--glass-border); }
+            .tool-logo:hover { transform: none; filter: drop-shadow(0px 8px 12px rgba(0,0,0,0.4)) drop-shadow(0px 0px 15px rgba(255,255,255,0.7)); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CUSTOM CURSOR -->
+    <div id="cursor"></div>
+
+    <!-- 80s SCI-FI SPLASH SCREEN -->
+    <div id="splash-screen">
+        <div class="crt-overlay"></div>
+        
+        <!-- THE CRACK (Hidden initially) -->
+        <img src="https://raw.githubusercontent.com/ct-infosec/CT-Infosec.in/refs/heads/main/%E2%80%94Pngtree%E2%80%94broken%20glass%20texture%20background%20shattered_21022650.png" class="screen-crack-img" alt="Broken Screen">
+
+        <div class="crt-monitor">
+            <div class="splash-stage">
+                <!-- Logo 1: Emblem -->
+                <img src="https://raw.githubusercontent.com/ct-infosec/CT-Infosec.in/refs/heads/main/logo.png" class="logo-layer logo-1" alt="Emblem">
+                <!-- Logo 2: Text -->
+                <img src="https://raw.githubusercontent.com/ct-infosec/CT-Infosec.in/refs/heads/main/ct%20infosec%20trnp%20-%20Copy.png" class="logo-layer logo-2" alt="CT-InfoSec">
+            </div>
+
+            <div class="terminal-console" id="terminal-out">
+                <!-- Logs will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN SITE CONTENT WRAPPER -->
+    <div id="main-content">
+        <!-- HEADER -->
+        <header>
+            <div class="container">
+                <nav>
+                    <a href="#" class="logo-wrapper hover-trigger">
+                        <img src="https://raw.githubusercontent.com/ct-infosec/CT-Infosec.in/refs/heads/main/ct%20infosec%20trnsp%20wht%20-%20Copy.png" class="logo-img main" alt="CT-InfoSec">
+                        <img src="https://raw.githubusercontent.com/ct-infosec/CT-Infosec.in/refs/heads/main/ct%20infosec%20trnsp%20wht%20-%20Copy.png" class="logo-img logo-glitch layer-1" alt="">
+                        <img src="https://raw.githubusercontent.com/ct-infosec/CT-Infosec.in/refs/heads/main/ct%20infosec%20trnsp%20wht%20-%20Copy.png" class="logo-img logo-glitch layer-2" alt="">
+                    </a>
+                    
+                    <!-- Mobile Hamburger -->
+                    <div class="mobile-menu-btn" onclick="toggleMenu()">/// MENU</div>
+
+                    <ul class="nav-links" id="nav-links">
+                        <li><a href="#about" class="hover-trigger" data-scramble="true" onclick="toggleMenu()">Intel</a></li>
+                        <li><a href="#services" class="hover-trigger" data-scramble="true" onclick="toggleMenu()">Capabilities</a></li>
+                        <li><a href="#team" class="hover-trigger" data-scramble="true" onclick="toggleMenu()">Command</a></li>
+                        <li><a href="#contact" class="hover-trigger" data-scramble="true" onclick="toggleMenu()">Connect</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- HERO SECTION -->
+        <section id="hero">
+            <canvas id="bg-canvas"></canvas>
+            <div class="container" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                
+                <!-- COIN FLIP ANIMATION -->
+                <div class="coin-container hover-trigger">
+                    <div class="coin-inner" id="hero-coin">
+                        <!-- Front Face (CT Logo) -->
+                        <div class="coin-face coin-front">
+                            <img src="https://raw.githubusercontent.com/ct-infosec/CT-Infosec.in/refs/heads/main/ct%20digi%20logo%202.png" class="coin-img" alt="CT-InfoSec - Cyber Tantra Information Security">
+                        </div>
+                        <!-- Back Face (MSME Logo) -->
+                        <div class="coin-face coin-back">
+                            <img src="https://raw.githubusercontent.com/ct-infosec/CT-Infosec.in/refs/heads/main/ministry-of-micro-small-and-medium-enterprises-seeklogo.png" class="coin-img" alt="MSME Infosec India">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-brand mono" id="brand-scramble" title="Cyber Tantra Information Security Pvt Ltd">CT-INFOSEC</div>
+                <h1 class="hero-title" style="font-size: clamp(2rem, 7vw, 8rem);">
+                    <div class="glitch-text" data-text="CONQUER THREATS">CONQUER THREATS</div>
+                    <div class="glitch-text" data-text="COMMAND DEFENSE">COMMAND DEFENSE</div>
+                </h1>
+                <div class="hero-subtitle mono">
+                    // MSME REGISTERED ENTITY<br>
+                    // SYSTEMS STATUS: OPTIMAL<br>
+                    // <span class="typewriter" data-text="INITIALIZING PROTOCOLS..."></span><span class="cursor-blink">_</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- MARQUEE STRIP -->
+        <div class="marquee-strip">
+            <div class="marquee-content">
+                /// DIGITAL FORENSICS /// PENETRATION TESTING /// ISO 27001 AUDITS /// SOC OPERATIONS /// INCIDENT RESPONSE /// THREAT HUNTING /// DIGITAL FORENSICS /// PENETRATION TESTING /// ISO 27001 AUDITS /// SOC OPERATIONS ///
+            </div>
+        </div>
+
+        <!-- ABOUT GRID -->
+        <section id="about" class="container reveal-on-scroll">
+            <div class="about-content">
+                <div class="mono" style="color:var(--primary); margin-bottom:1rem;">// THE FIRM</div>
+                <h2 class="reveal-on-scroll section-title" style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom:2rem; line-height:1.1;">TRUST IS ALGORITHM<br>VERIFICATION IS KEY</h2>
+                
+                <p class="reveal-on-scroll delay-100" style="color:var(--text-dim); font-size:1rem; line-height:1.8; margin-bottom: 1.5rem;">
+                    CT-InfoSec (Cyber Tantra Information Security Pvt Ltd) is an MSME-registered infosec provider in India, delivering end-to-end cybersecurity solutions. We assist enterprises in identifying security gaps through advanced VAPT and WAPT, reducing cyber risk via robust GRC frameworks, and establishing resilient security postures across on-premise, cloud, hybrid, and containerized infrastructures.
+                </p>
+                
+                <p class="reveal-on-scroll delay-200" style="color:var(--text-dim); font-size:1rem; line-height:1.8; margin-bottom: 2rem;">
+                    Our service portfolio encompasses offensive security, governance and compliance, managed SOC operations, and DFIR (Digital Forensics and Incident Response). By combining deep technical expertise with industry best practices, Cyber Tantra Infosec enables organizations to protect critical assets and maintain operational continuity.
+                </p>
+
+                <div class="reveal-on-scroll delay-300" style="border-left: 2px solid var(--primary); padding-left: 1.5rem;">
+                    <h4 style="color: var(--text-main); margin-bottom: 1rem; font-size: 1.1rem;">CORPORATE CREDENTIALS</h4>
+                    <ul style="list-style: none; color: var(--text-dim); font-family: var(--font-tech); font-size: 0.85rem; line-height: 1.6;">
+                        <li style="margin-bottom: 0.5rem;">> MSME Registered Enterprise (Govt. of India)</li>
+                        <li style="margin-bottom: 0.5rem;">> Cybersecurity Consulting & Managed Services Provider</li>
+                        <li>> Expertise across Enterprise, Cloud, Hybrid & Containers</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="reveal-on-scroll delay-400" style="border-left: 1px solid var(--glass-border); padding-left: 3rem; display: flex; flex-direction: column; justify-content: center;">
+                <div class="stat-block">
+                    <div class="stat-num">500+</div>
+                    <div class="stat-label">Systems Secured</div>
+                </div>
+                <div class="stat-block">
+                    <div class="stat-num">0</div>
+                    <div class="stat-label">Breaches Post-Audit</div>
+                </div>
+                <div class="stat-block" style="border:none">
+                    <div class="stat-num">24/7</div>
+                    <div class="stat-label">Active Surveillance</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section id="services" class="section-padding">
+            <div class="container">
+                <h2 class="section-title reveal-on-scroll">CORE_MODULES</h2>
+                
+                <div class="bento-grid">
+                    <!-- Card 1 -->
+                    <div class="holo-card hover-trigger reveal-on-scroll delay-100 clickable-card" data-modal-key="service-offensive">
+                        <span class="card-num">01</span>
+                        <div class="icon" style="font-size:2rem; margin-bottom:1rem; color:var(--primary)">◈</div>
+                        <h3 class="card-title">Offensive Security</h3>
+                        <p class="card-desc">Simulating advanced persistent threats to validate your defense mechanisms.</p>
+                        <div class="tech-list">
+                            <span class="tech-tag">VAPT</span>
+                            <span class="tech-tag">WAPT</span>
+                            <span class="tech-tag">API SECURITY</span>
+                            <span class="tech-tag">NPT</span>
+                            <span class="tech-tag">AI/LLM SECURITY</span>
+                            <span class="tech-tag">RED TEAMING</span>
+                            <span class="tech-tag">APP SECURITY</span>
+                            <span class="tech-tag">OWASP TOP 10:2025</span>
+                            <span class="tech-tag">OWASP TOP 10:2025 FOR LLM</span>
+                            <span class="tech-tag">MITRE ATT&CK</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="holo-card hover-trigger reveal-on-scroll delay-200 clickable-card" data-modal-key="service-governance">
+                        <span class="card-num">02</span>
+                        <div class="icon" style="font-size:2rem; margin-bottom:1rem; color:var(--secondary)">❖</div>
+                        <h3 class="card-title">Governance</h3>
+                        <p class="card-desc">Architecting compliance frameworks that align with global standards.</p>
+                        <div class="tech-list">
+                            <span class="tech-tag">ISO 27001:2022</span>
+                            <span class="tech-tag">DPDP</span>
+                            <span class="tech-tag">PCI DSS</span>
+                            <span class="tech-tag">HIPAA</span>
+                            <span class="tech-tag">GDPR</span>
+                            <span class="tech-tag">SOC2</span>
+                            <span class="tech-tag">NIST CSF</span>
+                            <span class="tech-tag">ERM FRAMEWORK</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="holo-card hover-trigger reveal-on-scroll delay-300 clickable-card" data-modal-key="service-forensics">
+                        <span class="card-num">03</span>
+                        <div class="icon" style="font-size:2rem; margin-bottom:1rem; color:var(--alert)">✜</div>
+                        <h3 class="card-title">Forensics</h3>
+                        <p class="card-desc">Recovering artifacts and tracing attribution in the aftermath of a breach.</p>
+                        <div class="tech-list">
+                            <span class="tech-tag">DIGITAL FORENSICS</span>
+                            <span class="tech-tag">DATA RECOVERY</span>
+                            <span class="tech-tag">MALWARE ANALYSIS</span>
+                            <span class="tech-tag">CHAIN OF CUSTODY</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="holo-card hover-trigger reveal-on-scroll delay-400 clickable-card" data-modal-key="service-soc">
+                        <span class="card-num">04</span>
+                        <div class="icon" style="font-size:2rem; margin-bottom:1rem; color:white">◉</div>
+                        <h3 class="card-title">Managed SOC</h3>
+                        <p class="card-desc">24/7 Eyes on glass. Continuous monitoring of your digital estate.</p>
+                        <div class="tech-list">
+                            <span class="tech-tag">EDR</span>
+                            <span class="tech-tag">XDR</span>
+                            <span class="tech-tag">SOAR</span>
+                            <span class="tech-tag">THREAT INTEL</span>
+                            <span class="tech-tag">INCIDENT RESPONSE</span>
+                            <span class="tech-tag">SEIM</span>
+                            <span class="tech-tag">THREAT HUNTING</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECURITY TOOLS RIBBON -->
+        <section class="tools-ribbon reveal-on-scroll">
+            <div class="tools-ribbon-title">// SECURITY ASSESSMENT TOOLS</div>
+            <div class="tools-track-wrapper">
+                <!-- Track 1 -->
+                <div class="tools-track">
+                    <img src="https://www.zaproxy.org/img/zap-by-checkmarx.svg" alt="ZAP" class="tool-logo hover-trigger">
+                    <img src="https://42crunch.com/wp-content/uploads/2022/02/LogoCr1-300x84.png" alt="42Crunch" class="tool-logo hover-trigger">
+                    <img src="https://cdn.prod.website-files.com/5fe3434623c64c793987363d/68d11ff1bd8ea511c25fa836_logo.svg" alt="Security Tool" class="tool-logo hover-trigger">
+                    <img src="https://cdn.cookielaw.org/logos/456411c7-665d-4046-bf30-cdeb16d561d8/3373231b-a86b-44eb-a74a-b9571198f82b/076661bb-6890-4d66-a06b-4fdcec0e8401/Salt_logo_full_color_RGB_final_(1).png" alt="Salt Security" class="tool-logo hover-trigger">
+                    <img src="https://docs.lakera.ai/_files/lakera.docs.buildwithfern.com/2956f429264d57b7130eb12f565c97ad8811f762d05045aa935948f8a56798f8/docs/assets/darkmodelogo.svg" alt="Lakera" class="tool-logo hover-trigger">
+                    <img src="https://docs.whylabs.ai/docs/img/whylabs.svg" alt="WhyLabs" class="tool-logo hover-trigger">
+                    <img src="https://www.veracode.com/wp-content/uploads/2024/11/veracode_logo.svg" alt="Veracode" class="tool-logo hover-trigger">
+                    <img src="https://checkmarx.com/wp-content/uploads/2025/11/Logo-5.svg" alt="Checkmarx" class="tool-logo hover-trigger">
+                    <img src="https://assets-eu-01.kc-usercontent.com/ef593040-b591-0198-9506-ed88b30bc023/17daddc6-87cb-4de4-9886-2bd9ed4f6a8c/SQ-Cloud_Built-in-padding_300px.svg?w=300&h=72&auto=format&fit=crop" alt="SonarQube" class="tool-logo hover-trigger">
+                    <img src="https://nmap.org/images/sitelogo.png" alt="Nmap" class="tool-logo hover-trigger">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Metasploit_logo_and_wordmark.svg" alt="Metasploit" class="tool-logo hover-trigger">
+                    <img src="https://cdn.worldvectorlogo.com/logos/wireshark.svg" alt="Wireshark" class="tool-logo hover-trigger">
+                    <img src="https://static.tenable.com/press/logos/TenableLogo_White_RGB.svg" alt="Tenable" class="tool-logo hover-trigger">
+                    <img src="https://www.openvas.org/img/inmenulogo.svg" alt="OpenVAS" class="tool-logo hover-trigger">
+                    <img src="https://horizon3.ai/wp-content/uploads/2024/11/Horizon3ai_Logo_Tagline_Horizontal_RGB-WhiteTxt_NoTag.png" alt="Horizon3" class="tool-logo hover-trigger">
+                    <img src="https://www.matrix3d.com/wp-content/uploads/2023/12/VAPT-tools-Burp-Suite.png" alt="Burp Suite" class="tool-logo hover-trigger">
+                    <img src="https://www.acunetix.com/wp-content/themes/acunetix/img/logo-1.svg" alt="Acunetix" class="tool-logo hover-trigger">
+                    <img src="https://detectify.com/site/themes/detectify/img/detectify_logo_black.svg" alt="Detectify" class="tool-logo hover-trigger">
+                    <img src="https://www.matrix3d.com/wp-content/uploads/2023/12/VAPT-tools-NITKO.png" alt="Nikto" class="tool-logo hover-trigger">
+                    <img src="https://ik.imagekit.io/qualys/image/logo/qualys.svg" alt="Qualys" class="tool-logo hover-trigger">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Sqlmap_logo.png?20180709082002" alt="SQLMap" class="tool-logo hover-trigger">
+                </div>
+                <!-- Track 2 (Duplicate for infinite seamless scroll) -->
+                <div class="tools-track">
+                    <img src="https://www.zaproxy.org/img/zap-by-checkmarx.svg" alt="ZAP" class="tool-logo hover-trigger">
+                    <img src="https://42crunch.com/wp-content/uploads/2022/02/LogoCr1-300x84.png" alt="42Crunch" class="tool-logo hover-trigger">
+                    <img src="https://cdn.prod.website-files.com/5fe3434623c64c793987363d/68d11ff1bd8ea511c25fa836_logo.svg" alt="Security Tool" class="tool-logo hover-trigger">
+                    <img src="https://cdn.cookielaw.org/logos/456411c7-665d-4046-bf30-cdeb16d561d8/3373231b-a86b-44eb-a74a-b9571198f82b/076661bb-6890-4d66-a06b-4fdcec0e8401/Salt_logo_full_color_RGB_final_(1).png" alt="Salt Security" class="tool-logo hover-trigger">
+                    <img src="https://docs.lakera.ai/_files/lakera.docs.buildwithfern.com/2956f429264d57b7130eb12f565c97ad8811f762d05045aa935948f8a56798f8/docs/assets/darkmodelogo.svg" alt="Lakera" class="tool-logo hover-trigger">
+                    <img src="https://docs.whylabs.ai/docs/img/whylabs.svg" alt="WhyLabs" class="tool-logo hover-trigger">
+                    <img src="https://www.veracode.com/wp-content/uploads/2024/11/veracode_logo.svg" alt="Veracode" class="tool-logo hover-trigger">
+                    <img src="https://checkmarx.com/wp-content/uploads/2025/11/Logo-5.svg" alt="Checkmarx" class="tool-logo hover-trigger">
+                    <img src="https://assets-eu-01.kc-usercontent.com/ef593040-b591-0198-9506-ed88b30bc023/17daddc6-87cb-4de4-9886-2bd9ed4f6a8c/SQ-Cloud_Built-in-padding_300px.svg?w=300&h=72&auto=format&fit=crop" alt="SonarQube" class="tool-logo hover-trigger">
+                    <img src="https://nmap.org/images/sitelogo.png" alt="Nmap" class="tool-logo hover-trigger">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Metasploit_logo_and_wordmark.svg" alt="Metasploit" class="tool-logo hover-trigger">
+                    <img src="https://cdn.worldvectorlogo.com/logos/wireshark.svg" alt="Wireshark" class="tool-logo hover-trigger">
+                    <img src="https://static.tenable.com/press/logos/TenableLogo_White_RGB.svg" alt="Tenable" class="tool-logo hover-trigger">
+                    <img src="https://www.openvas.org/img/inmenulogo.svg" alt="OpenVAS" class="tool-logo hover-trigger">
+                    <img src="https://horizon3.ai/wp-content/uploads/2024/11/Horizon3ai_Logo_Tagline_Horizontal_RGB-WhiteTxt_NoTag.png" alt="Horizon3" class="tool-logo hover-trigger">
+                    <img src="https://www.matrix3d.com/wp-content/uploads/2023/12/VAPT-tools-Burp-Suite.png" alt="Burp Suite" class="tool-logo hover-trigger">
+                    <img src="https://www.acunetix.com/wp-content/themes/acunetix/img/logo-1.svg" alt="Acunetix" class="tool-logo hover-trigger">
+                    <img src="https://detectify.com/site/themes/detectify/img/detectify_logo_black.svg" alt="Detectify" class="tool-logo hover-trigger">
+                    <img src="https://www.matrix3d.com/wp-content/uploads/2023/12/VAPT-tools-NITKO.png" alt="Nikto" class="tool-logo hover-trigger">
+                    <img src="https://ik.imagekit.io/qualys/image/logo/qualys.svg" alt="Qualys" class="tool-logo hover-trigger">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Sqlmap_logo.png?20180709082002" alt="SQLMap" class="tool-logo hover-trigger">
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERT TEAM SECTION -->
+        <section id="team" class="section-padding">
+            <div class="container">
+                <div class="mono reveal-on-scroll" style="color:var(--secondary); margin-bottom:1rem;">// PERSONNEL CLEARANCE</div>
+                <h2 class="section-title reveal-on-scroll">LEADERSHIP & COMMAND</h2>
+                
+                <!-- FOUNDERS / EXECUTIVE LEADERSHIP GRID -->
+                <div class="team-grid" style="margin-bottom: 5rem;">
+                    
+                    <!-- GOURAV SHAW CARD -->
+                    <div class="personnel-card holo-card hover-trigger reveal-on-scroll delay-100 clickable-card" data-modal-key="team-gourav" style="border: 1px solid var(--primary); background: rgba(0, 255, 204, 0.02); overflow: hidden; padding: 2rem;">
+                        <div class="card-laser" style="animation-delay: 0s;"></div>
+                        <div class="p-header" style="border-bottom: 1px solid rgba(0, 255, 204, 0.2); position: relative; z-index: 2;">
+                            <span class="mono" style="color:var(--primary); font-weight:bold; font-size: clamp(1rem, 3vw, 1.4rem);">GOURAV SHAW</span>
+                            <span class="p-status" style="color: var(--primary); animation: blink 2s infinite; letter-spacing: 1px;">[ OMEGA ]</span>
+                        </div>
+                        <div class="p-body" style="position: relative; z-index: 2;">
+                            <div class="cyber-stat-row">
+                                <span class="cyber-stat-label">DESIGNATION</span>
+                                <span class="cyber-stat-value">CO-FOUNDER & CO-OWNER</span>
+                            </div>
+                            <div class="cyber-stat-row">
+                                <span class="cyber-stat-label">CREDENTIALS</span>
+                                <span class="cyber-stat-value">MCA QUALIFIED IT PRO</span>
+                            </div>
+                            <div class="cyber-stat-row">
+                                <span class="cyber-stat-label">CORE EXP</span>
+                                <span class="cyber-stat-value">FULL-STACK & CYBERSECURITY</span>
+                            </div>
+                            <div class="cyber-stat-row">
+                                <span class="cyber-stat-label">DUAL-OPS</span>
+                                <span class="cyber-stat-value">ROYAL INTERIOR (3D VIS)</span>
+                            </div>
+                            <div class="tech-list" style="margin-top: 1.5rem;">
+                                <span class="tech-tag" style="border-color: var(--primary); color: var(--primary); animation: blink 3s infinite;">> ACCESS_DOSSIER</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SD CARD -->
+                    <div class="personnel-card holo-card hover-trigger reveal-on-scroll delay-200 clickable-card" data-modal-key="team-sd" style="border: 1px solid var(--primary); background: rgba(0, 255, 204, 0.02); overflow: hidden; padding: 2rem;">
+                        <div class="card-laser" style="animation-delay: 1s;"></div>
+                        <div class="p-header" style="border-bottom: 1px solid rgba(0, 255, 204, 0.2); position: relative; z-index: 2;">
+                            <span class="mono" style="color:var(--primary); font-weight:bold; font-size: clamp(1rem, 3vw, 1.4rem);">SD</span>
+                            <span class="p-status" style="color: var(--primary); animation: blink 2s infinite; letter-spacing: 1px;">[ OMEGA ]</span>
+                        </div>
+                        <div class="p-body" style="position: relative; z-index: 2;">
+                            <div class="cyber-stat-row">
+                                <span class="cyber-stat-label">DESIGNATION</span>
+                                <span class="cyber-stat-value">CO-FOUNDER & CO-OWNER</span>
+                            </div>
+                            <div class="cyber-stat-row">
+                                <span class="cyber-stat-label">CREDENTIALS</span>
+                                <span class="cyber-stat-value">CEH v13 AI CERTIFIED</span>
+                            </div>
+                            <div class="cyber-stat-row">
+                                <span class="cyber-stat-label">CORE EXP</span>
+                                <span class="cyber-stat-value">DIGITAL FORENSICS & VAPT</span>
+                            </div>
+                            <div class="cyber-stat-row">
+                                <span class="cyber-stat-label">ENGAGEMENT</span>
+                                <span class="cyber-stat-value">CERT-In EMPANELED OPS</span>
+                            </div>
+                            <div class="tech-list" style="margin-top: 1.5rem;">
+                                <span class="tech-tag" style="border-color: var(--primary); color: var(--primary); animation: blink 3s infinite;">> ACCESS_DOSSIER</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AKM CARD -->
+                    <div class="personnel-card holo-card hover-trigger reveal-on-scroll delay-300 clickable-card" data-modal-key="team-akm" style="border: 1px solid var(--primary); background: rgba(0, 255, 204, 0.02); overflow: hidden; padding: 2rem;">
+                        <div class="card-laser" style="animation-delay: 2s;"></div>
+                        <div class="p-header" style="border-bottom: 1px solid rgba(0, 255, 204, 0.2); position: relative; z-index: 2;">
+                            <span class="mono" style="color:var(--primary); font-weight:bold; font-size: clamp(1rem, 3vw, 1.4rem);">AKM</span>
+                            <span class="p-status" style="color: var(--primary); animation: blink 2s infinite; letter-spacing: 1px;">[ OMEGA ]</span>
+                        </div>
+                        <div class="p-body" style="position: relative; z-index: 2;">
+                            <div class="cyber-stat-row">
+                                <span class="cyber-stat-label">DESIGNATION</span>
+                                <span class="cyber-stat-value">CHIEF EXECUTIVE OFFICER</span>
+                            </div>
+                            <div class="cyber-stat-row">
+                                <span class="cyber-stat-label">CREDENTIALS</span>
+                                <span class="cyber-stat-value">CCNA & GEN-AI SEC</span>
+                            </div>
+                            <div class="cyber-stat-row">
+                                <span class="cyber-stat-label">CORE EXP</span>
+                                <span class="cyber-stat-value">SIEM/SOAR & RED TEAM</span>
+                            </div>
+                            <div class="cyber-stat-row">
+                                <span class="cyber-stat-label">DOMAIN</span>
+                                <span class="cyber-stat-value">INTRUSION DETECTION</span>
+                            </div>
+                            <div class="tech-list" style="margin-top: 1.5rem;">
+                                <span class="tech-tag" style="border-color: var(--primary); color: var(--primary); animation: blink 3s infinite;">> ACCESS_DOSSIER</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AKB CARD -->
+                    <div class="personnel-card holo-card hover-trigger reveal-on-scroll delay-400 clickable-card" data-modal-key="team-akb" style="border: 1px solid var(--primary); background: rgba(0, 255, 204, 0.02); overflow: hidden; padding: 2rem;">
+                        <div class="card-laser" style="animation-delay: 3s;"></div>
+                        <div class="p-header" style="border-bottom: 1px solid rgba(0, 255, 204, 0.2); position: relative; z-index: 2;">
+                            <span class="mono" style="color:var(--primary); font-weight:bold; font-size: clamp(1rem, 3vw, 1.4rem);">AKB</span>
+                            <span class="p-status" style="color: var(--primary); animation: blink 2s infinite; letter-spacing: 1px;">[ OMEGA ]</span>
+                        </div>
+                        <div class="p-body" style="position: relative; z-index: 2;">
+                            <div class="cyber-stat-row">
+                                <span class="cyber-stat-label">DESIGNATION</span>
+                                <span class="cyber-stat-value">MANAGING DIRECTOR</span>
+                            </div>
+                            <div class="cyber-stat-row">
+                                <span class="cyber-stat-label">CREDENTIALS</span>
+                                <span class="cyber-stat-value">GRC SPECIALIST</span>
+                            </div>
+                            <div class="cyber-stat-row">
+                                <span class="cyber-stat-label">CORE EXP</span>
+                                <span class="cyber-stat-value">ISO 27001, DPDP, GDPR</span>
+                            </div>
+                            <div class="cyber-stat-row">
+                                <span class="cyber-stat-label">DOMAIN</span>
+                                <span class="cyber-stat-value">AUDITS & CAPA EXECUTION</span>
+                            </div>
+                            <div class="tech-list" style="margin-top: 1.5rem;">
+                                <span class="tech-tag" style="border-color: var(--primary); color: var(--primary); animation: blink 3s infinite;">> ACCESS_DOSSIER</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="mono reveal-on-scroll delay-100" style="color:var(--secondary); margin-bottom:1.5rem; font-size: 1.2rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem;">
+                    // SPECIALIZED OPERATIONAL UNITS
+                </div>
+                <p class="reveal-on-scroll delay-100" style="color:var(--text-dim); max-width: 600px; margin-bottom: 3rem;">
+                    Our unit comprises elite specialists with verified credentials in offensive security, forensics, and AI defense.
+                </p>
+
+                <div class="team-grid">
+                    <!-- Expert Profile 1: Offensive & Cloud -->
+                    <div class="personnel-card hover-trigger reveal-on-scroll delay-200 clickable-card" data-modal-key="team-offensive">
+                        <div class="p-header">
+                            <span class="mono" style="color:white; font-weight:bold;">UNIT LEAD // OFFENSIVE</span>
+                            <span class="p-status">ACTIVE</span>
+                        </div>
+                        <div class="p-body">
+                            <div class="cert-badge">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--alert)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                                Certified Ethical Hacker (CEH)
+                            </div>
+                            <div class="cert-badge">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+                                Kali Linux & Offensive Ops
+                            </div>
+                            <div class="cert-badge">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20"></path><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                                Dark Web & Anonymity
+                            </div>
+                            <p style="margin-top:1.5rem; font-size:0.9rem; color:var(--text-dim);">
+                                Specializing in Red Teaming operations, VAPT, and securing cloud infrastructures against advanced threats.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Expert Profile 2: Governance & Strategy -->
+                    <div class="personnel-card hover-trigger reveal-on-scroll delay-300 clickable-card" data-modal-key="team-defense">
+                        <div class="p-header">
+                            <span class="mono" style="color:white; font-weight:bold;">UNIT LEAD // DEFENSE</span>
+                            <span class="p-status">ACTIVE</span>
+                        </div>
+                        <div class="p-body">
+                            <div class="cert-badge">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                                SOC Operations & SIEM
+                            </div>
+                            <div class="cert-badge">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                                ISO/IEC 27001:2022 ISMS
+                            </div>
+                            <div class="cert-badge">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                IAM Strategy & Solutions
+                            </div>
+                            <p style="margin-top:1.5rem; font-size:0.9rem; color:var(--text-dim);">
+                                Expertise in regulatory frameworks, SIEM architecture, and enterprise risk auditing.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Expert Profile 3: Forensics & Future Tech -->
+                    <div class="personnel-card hover-trigger reveal-on-scroll delay-400 clickable-card" data-modal-key="team-forensics">
+                        <div class="p-header">
+                            <span class="mono" style="color:white; font-weight:bold;">UNIT LEAD // FORENSICS</span>
+                            <span class="p-status">ACTIVE</span>
+                        </div>
+                        <div class="p-body">
+                            <div class="cert-badge">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                                Cellebrite UFED Specialist
+                            </div>
+                            <div class="cert-badge">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"></path><path d="m2 22 5-5"></path><path d="m22 22-5-5"></path><path d="M12 12a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z"></path></svg>
+                                Master LLM Security & AI
+                            </div>
+                            <div class="cert-badge">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                Cyber Threat Intelligence
+                            </div>
+                            <p style="margin-top:1.5rem; font-size:0.9rem; color:var(--text-dim);">
+                                Pioneering defense strategies for AI/LLM vectors and deep-dive mobile forensic recovery.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="section-padding reveal-on-scroll">
+            <div class="container">
+                <div class="contact-box hover-trigger" style="border: 1px solid var(--glass-border); background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); padding: 5rem 2rem; max-width: 900px; margin: 0 auto; text-align: center;">
+                    <h2 class="reveal-on-scroll" style="font-size: clamp(1.8rem, 5vw, 4rem); margin-bottom:2rem; font-family: var(--font-tech); color: var(--text-main);">SECURE_CHANNEL</h2>
+                    <p class="mono reveal-on-scroll delay-100" style="color:var(--text-dim); margin-bottom: 3rem;">
+                        // ENCRYPTED TRANSMISSION LINE READY<br>
+                        // AWAITING INPUT
+                    </p>
+                    
+                    <a href="mailto:ct.informationsec@gmail.com" class="email-link reveal-on-scroll delay-200" data-text="ct.informationsec@gmail.com" style="display: inline-block; font-size: clamp(0.9rem, 4vw, 3rem); font-family: var(--font-tech); color: var(--primary); text-decoration: none; position: relative; padding: 1rem 2rem; border: 1px solid var(--primary); transition: all 0.3s;">
+                        ct.informationsec@gmail.com
+                    </a>
+
+                    <div class="reveal-on-scroll delay-300" style="display: flex; gap: 1rem; justify-content: center; margin-top: 3rem; flex-wrap: wrap;">
+                        <a href="https://www.instagram.com/cyber_tantra_infosec/" target="_blank" rel="noopener noreferrer" class="social-btn hover-trigger">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                            @CYBER_TANTRA_INFOSEC
+                        </a>
+                        <a href="https://www.instagram.com/ct_infosec/" target="_blank" rel="noopener noreferrer" class="social-btn hover-trigger">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                            @CT_INFOSEC
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="container reveal-on-scroll">
+            <div class="mono" style="color:var(--text-dim); font-size:0.8rem;">
+                <img src="https://raw.githubusercontent.com/ct-infosec/CT-Infosec.in/refs/heads/main/msme-seeklogo.png" alt="MSME Registered Infosec" style="height: 50px; width: auto; margin-bottom: 1rem; display: block;">
+                © 2026 CT-INFOSEC | Cyber Tantra Information Security Pvt Ltd.<br>
+                ALL RIGHTS RESERVED.<br>
+                MSME REG: #8829-XJ
+            </div>
+            <div style="display:flex; gap:2rem; flex-wrap: wrap;">
+                <a href="#" class="mono hover-trigger">LINKEDIN</a>
+                <a href="#" class="mono hover-trigger">TWITTER</a>
+                <a href="https://www.instagram.com/cyber_tantra_infosec/" target="_blank" rel="noopener noreferrer" class="mono hover-trigger">IG: @CYBER_TANTRA_INFOSEC</a>
+                <a href="https://www.instagram.com/ct_infosec/" target="_blank" rel="noopener noreferrer" class="mono hover-trigger">IG: @CT_INFOSEC</a>
+                <a href="mailto:ct.informationsec@gmail.com" class="mono hover-trigger">ct.informationsec@gmail.com</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- CYBER MODAL HTML -->
+    <div id="cyber-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="mono" style="color:var(--text-main); font-size:0.9rem;">// SECURE_FILE_ACCESS</span>
+                <button class="modal-close hover-trigger" onclick="closeModal()">[ X ]</button>
+            </div>
+            <div class="modal-body">
+                <h3 class="modal-title" id="modal-title">TITLE</h3>
+                <div class="modal-subtitle" id="modal-subtitle">SUBTITLE</div>
+                <div class="modal-desc" id="modal-desc">Description goes here...</div>
+                <div class="tech-list" id="modal-tags">
+                    <!-- Tags injected via JS -->
+                </div>
+            </div>
+            <!-- Glitch Scanline in modal -->
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--primary); animation: scan-card 3s infinite linear; pointer-events:none;"></div>
+        </div>
+    </div>
+
+    <script>
+        // --- MODAL DATA DICTIONARY ---
+        const modalData = {
+            'service-offensive': {
+                title: 'Offensive Security',
+                subtitle: '// SIMULATED ADVERSARIAL OPERATIONS',
+                desc: 'We operate under the "Assume Breach" paradigm. By simulating advanced persistent threats (APTs), we proactively identify and exploit vulnerabilities before malicious actors do. Our comprehensive assessments cover traditional networks, modern web applications, APIs, and bleeding-edge AI/LLM integrations, utilizing the MITRE ATT&CK framework and strictly adhering to the latest OWASP 2025 standards.',
+                tags: ['VAPT', 'WAPT', 'API SECURITY', 'NPT', 'AI/LLM SECURITY', 'RED TEAMING', 'APP SECURITY', 'OWASP TOP 10:2025', 'LLM TOP 10', 'MITRE ATT&CK']
+            },
+            'service-governance': {
+                title: 'Governance & Compliance',
+                subtitle: '// REGULATORY ALIGNMENT & RISK MANAGEMENT',
+                desc: 'Architecting resilient compliance frameworks that align with complex global regulatory requirements. From implementing ISO/IEC 27001:2022 Information Security Management Systems to ensuring readiness for DPDP, GDPR, HIPAA, and SOC2, we guarantee your organizational Enterprise Risk Management (ERM) is structurally sound, legally compliant, and totally audit-proof.',
+                tags: ['ISO 27001:2022', 'DPDP', 'PCI DSS', 'HIPAA', 'GDPR', 'SOC2', 'NIST CSF', 'ERM FRAMEWORK']
+            },
+            'service-forensics': {
+                title: 'Digital Forensics',
+                subtitle: '// ARTIFACT RECOVERY & INCIDENT RESPONSE',
+                desc: 'Rapid incident response and deep-dive forensic analysis. When a breach occurs, our specialized units immediately establish strict chain-of-custody protocols. We utilize industry-leading tools for complete data recovery, perform deep malware reverse engineering, and trace forensic artifacts to establish attribution and rapidly mitigate operational impact.',
+                tags: ['DIGITAL FORENSICS', 'DATA RECOVERY', 'MALWARE ANALYSIS', 'CHAIN OF CUSTODY']
+            },
+            'service-soc': {
+                title: 'Managed SOC',
+                subtitle: '// 24/7 ACTIVE SURVEILLANCE & NEUTRALIZATION',
+                desc: 'Continuous eyes-on-glass monitoring of your entire digital infrastructure. We deploy advanced EDR and XDR agents, centralized through powerful SIEM architectures, and automated via SOAR workflows. Our dedicated threat hunting teams proactively seek out anomalies, providing real-time Threat Intelligence and immediate Incident Response to neutralize threats instantly.',
+                tags: ['EDR', 'XDR', 'SOAR', 'THREAT INTEL', 'INCIDENT RESPONSE', 'SEIM', 'THREAT HUNTING']
+            },
+            'team-gourav': {
+                title: 'Gourav Shaw // Co-Founder',
+                subtitle: '// CLEARANCE LEVEL: OMEGA',
+                desc: 'Gourav Shaw is an MCA-qualified IT professional and entrepreneur with hands-on expertise in software development, cybersecurity, and full-stack technologies. As Co-Founder of CT-Infosec (Cyber Tantra Information Security Pvt. Ltd.), he drives innovative cybersecurity solutions that protect businesses in the digital age. He also co-founded Royal Interior, a luxury interior design and 3D visualization consultancy, reflecting his rare blend of technical and creative vision.',
+                tags: ['ENTREPRENEUR', 'CYBERSECURITY', 'FULL-STACK IT', '3D VISUALIZATION']
+            },
+            'team-sd': {
+                title: 'SD // Co-Founder',
+                subtitle: '// CLEARANCE LEVEL: OMEGA',
+                desc: 'SD is a CEH v13 AI-certified cybersecurity professional and Digital Forensics specialist with hands-on expertise in VAPT, penetration testing, incident response, and digital forensic investigations. As Co-Founder and Co-Owner, SD leads advanced cybersecurity operations — from threat detection and red team simulations to ISO 27001 compliance and AI/ML security frameworks — delivering enterprise-grade protection for businesses in an increasingly complex threat landscape.',
+                tags: ['DIGITAL FORENSICS', 'CEH v13 AI', 'VAPT', 'AI/ML SECURITY', 'CERT-In']
+            },
+            'team-akm': {
+                title: 'AKM // CEO',
+                subtitle: '// CLEARANCE LEVEL: OMEGA',
+                desc: 'AKM is a results-driven cybersecurity professional and the Chief Executive Officer of CT-Infosec. A Digital Forensics graduate with hands-on expertise in VAPT, incident response, and AI-powered security solutions, AKM brings a sharp technical edge to every challenge. Certified in Generative AI for Cybersecurity and CCNA, he drives CT-Infosec\'s mission of delivering cutting-edge, enterprise-grade cybersecurity solutions to businesses across India.',
+                tags: ['CEO', 'DIGITAL FORENSICS', 'GEN-AI SECURITY', 'CCNA', 'SIEM/SOAR']
+            },
+            'team-akb': {
+                title: 'AKB // Managing Director',
+                subtitle: '// CLEARANCE LEVEL: OMEGA',
+                desc: 'AKB is a detail-oriented cybersecurity GRC professional and the Managing Director of CT-Infosec. A Digital Forensics graduate with strong expertise in ISO 27001 ISMS implementation, risk assessment, and VAPT, AKB brings a structured and compliance-first approach to cybersecurity leadership. He ensures CT-Infosec operates at the highest standards of regulatory readiness and data privacy compliance across ISO 27001, NIST, GDPR, and India\'s DPDP Act.',
+                tags: ['MANAGING DIRECTOR', 'GRC EXPERT', 'ISO 27001 ISMS', 'DPDP & GDPR', 'AUDITS & CAPA']
+            },
+            'team-offensive': {
+                title: 'Unit Lead // Offensive',
+                subtitle: '// CLEARANCE LEVEL: MAXIMUM',
+                desc: 'Elite offensive operator and Certified Ethical Hacker (CEH). This unit lead specializes in penetrating hardened cloud infrastructures and Linux server environments. Renowned for executing complex Red Teaming scenarios, uncovering zero-day vulnerabilities, and navigating Dark Web and anonymity networks to proactively track threat actor methodologies before they strike.',
+                tags: ['CEH', 'KALI LINUX', 'RED TEAMING', 'CLOUD PEN-TESTING', 'DARK WEB OPS']
+            },
+            'team-defense': {
+                title: 'Unit Lead // Defense',
+                subtitle: '// CLEARANCE LEVEL: MAXIMUM',
+                desc: 'Strategic architect of defense-in-depth methodologies. Expert in deploying robust SOC Operations and engineering highly tuned SIEM infrastructures. Possesses deep expertise in designing comprehensive Identity and Access Management (IAM) solutions and governing complex enterprise compliance via ISO/IEC 27001:2022 ISMS frameworks.',
+                tags: ['SOC ARCHITECTURE', 'SIEM', 'ISO 27001:2022', 'IAM SOLUTIONS', 'ENTERPRISE DEFENSE']
+            },
+            'team-forensics': {
+                title: 'Unit Lead // Forensics',
+                subtitle: '// CLEARANCE LEVEL: MAXIMUM',
+                desc: 'Pioneer in post-breach analysis and next-generation threat vectors. Certified Cellebrite UFED specialist excelling in complex mobile forensics and deep-dive artifact recovery. Additionally, this lead is deeply versed in Cyber Threat Intelligence (CTI) and actively securing emerging AI/Master LLM architectures against prompt-injection and data manipulation attacks.',
+                tags: ['CELLEBRITE UFED', 'MOBILE FORENSICS', 'AI/LLM SECURITY', 'THREAT INTELLIGENCE']
+            }
+        };
+
+        // --- MODAL LOGIC ---
+        const modal = document.getElementById('cyber-modal');
+        let modalScrambleInstance = null;
+
+        function openModal(key) {
+            const data = modalData[key];
+            if(!data) return;
+
+            // Populate Text
+            const titleEl = document.getElementById('modal-title');
+            titleEl.innerText = data.title;
+            document.getElementById('modal-subtitle').innerText = data.subtitle;
+            document.getElementById('modal-desc').innerText = data.desc;
+
+            // Populate Tags
+            const tagsContainer = document.getElementById('modal-tags');
+            tagsContainer.innerHTML = '';
+            data.tags.forEach(tag => {
+                const span = document.createElement('span');
+                span.className = 'tech-tag';
+                span.style.borderColor = 'var(--primary)';
+                span.style.color = 'var(--primary)';
+                span.innerText = tag;
+                tagsContainer.appendChild(span);
+            });
+
+            // Show Modal
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Lock background scroll
+
+            // Re-init Scramble Effect for Modal Title
+            if(!modalScrambleInstance) modalScrambleInstance = new CyberScramble(titleEl);
+            modalScrambleInstance.el = titleEl; // Update element ref
+            modalScrambleInstance.setText(data.title);
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scroll
+        }
+
+        // Close modal on clicking outside the box
+        modal.addEventListener('click', (e) => {
+            if(e.target === modal) closeModal();
+        });
+
+        // Attach click events to cards
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.clickable-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const key = card.getAttribute('data-modal-key');
+                    openModal(key);
+                });
+            });
+        });
+
+        // --- MOBILE MENU TOGGLE ---
+        function toggleMenu() {
+            const nav = document.getElementById('nav-links');
+            nav.classList.toggle('active');
+        }
+
+        // --- CYBER SCRAMBLE CLASS ---
+        class CyberScramble {
+            constructor(el) {
+                this.el = el;
+                this.chars = '!<>-_\\/[]{}—=+*^?#________';
+                this.update = this.update.bind(this);
+            }
+
+            setText(newText) {
+                const oldText = this.el.innerText;
+                const length = Math.max(oldText.length, newText.length);
+                const promise = new Promise((resolve) => this.resolve = resolve);
+                this.queue = [];
+                for (let i = 0; i < length; i++) {
+                    const from = oldText[i] || '';
+                    const to = newText[i] || '';
+                    const start = Math.floor(Math.random() * 40);
+                    const end = start + Math.floor(Math.random() * 40);
+                    this.queue.push({ from, to, start, end });
+                }
+                cancelAnimationFrame(this.frameRequest);
+                this.frame = 0;
+                this.update();
+                return promise;
+            }
+
+            update() {
+                let output = '';
+                let complete = 0;
+                for (let i = 0, n = this.queue.length; i < n; i++) {
+                    let { from, to, start, end, char } = this.queue[i];
+                    if (this.frame >= end) {
+                        complete++;
+                        output += to;
+                    } else if (this.frame >= start) {
+                        if (!char || Math.random() < 0.28) {
+                            char = this.randomChar();
+                            this.queue[i].char = char;
+                        }
+                        output += `<span class="dud">${char}</span>`;
+                    } else {
+                        output += from;
+                    }
+                }
+                this.el.innerHTML = output;
+                if (complete === this.queue.length) {
+                    if (this.resolve) this.resolve();
+                } else {
+                    this.frameRequest = requestAnimationFrame(this.update);
+                    this.frame++;
+                }
+            }
+
+            randomChar() {
+                return this.chars[Math.floor(Math.random() * this.chars.length)];
+            }
+        }
+
+        // --- SPLASH SCREEN BOOT SEQUENCE ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const terminalOut = document.getElementById('terminal-out');
+            const logo1 = document.querySelector('.logo-1');
+            const logo2 = document.querySelector('.logo-2');
+            const splashScreen = document.getElementById('splash-screen');
+            const crtMonitor = document.querySelector('.crt-monitor');
+            const crackImage = document.querySelector('.screen-crack-img');
+            const body = document.body;
+
+            // Simple preloader for the heavy crack image
+            const imgPreload = new Image();
+            imgPreload.src = crackImage.src;
+
+            // Audio simulation logic (Visual only)
+            const addLog = (text, type = 'normal') => {
+                const p = document.createElement('div');
+                p.className = `console-line ${type}`;
+                p.innerText = `> ${text}`;
+                terminalOut.appendChild(p);
+                terminalOut.scrollTop = terminalOut.scrollHeight;
+            };
+
+            // Sequence Timeline
+            const runSequence = async () => {
+                // 1. Initial Logs (0s - 1.5s)
+                addLog("INITIALIZING BIOS...");
+                await new Promise(r => setTimeout(r, 200));
+                addLog("CHECKING MEMORY INTEGRITY... OK");
+                await new Promise(r => setTimeout(r, 200));
+                addLog("LOADING KERNEL... V.2.0.26");
+                await new Promise(r => setTimeout(r, 400));
+                addLog("CONNECTING TO SECURE GATEWAY...");
+                
+                // 2. Logo 1 Fades In (1.5s)
+                logo1.style.opacity = 1;
+                await new Promise(r => setTimeout(r, 1000));
+
+                // 3. Glitch Swap (2.5s)
+                addLog("DECRYPTING IDENTITY...", "white");
+                logo1.classList.add('glitch-active');
+                await new Promise(r => setTimeout(r, 400));
+                
+                logo1.style.opacity = 0;
+                logo1.classList.remove('glitch-active');
+                
+                logo2.style.opacity = 1;
+                logo2.classList.add('glitch-active'); // Glitch in
+                await new Promise(r => setTimeout(r, 600));
+                logo2.classList.remove('glitch-active'); // Stabilize
+
+                // 4. Critical Failure (4.5s)
+                await new Promise(r => setTimeout(r, 800));
+                addLog("WARNING: ANOMALY DETECTED", "red");
+                await new Promise(r => setTimeout(r, 200));
+                addLog("SYSTEM INTEGRITY FAILURE", "red");
+                await new Promise(r => setTimeout(r, 200));
+                addLog("REALITY BREACH IMMINENT...", "red");
+
+                // 5. THE CRACK (5.7s)
+                await new Promise(r => setTimeout(r, 500));
+                crackImage.classList.add('crack-visible');
+                
+                // 6. Black Hole Suck (6.0s)
+                await new Promise(r => setTimeout(r, 200));
+                crtMonitor.classList.add('implode');
+
+                // 7. Reveal Main Site (6.8s)
+                setTimeout(() => {
+                    splashScreen.style.display = 'none';
+                    body.classList.add('loaded');
+                    initMainSite();
+                }, 800);
+            };
+
+            // Start sequence after short delay
+            setTimeout(runSequence, 500);
+        });
+
+        // Function to initialize main site animations AFTER splash
+        function initMainSite() {
+            // Global mouse tracking variables
+            let mouseX = -100;
+            let mouseY = -100;
+            let currentX = -100;
+            let currentY = -100;
+
+            // --- 1. MOUSE & TOUCH TRACKING ---
+            const updateMousePosition = (e) => {
+                if (e.type.startsWith('touch')) {
+                    const touch = e.touches[0];
+                    mouseX = touch.clientX;
+                    mouseY = touch.clientY;
+                } else {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                }
+            };
+            
+            document.addEventListener('mousemove', updateMousePosition);
+            document.addEventListener('touchmove', updateMousePosition, {passive: true});
+
+            // --- 3. CURSOR LOGIC ---
+            const cursor = document.getElementById('cursor');
+            const triggers = document.querySelectorAll('.hover-trigger');
+            
+            let isHovering = false;
+
+            const renderLoop = () => {
+                // Smooth interpolation for cursor (lag effect)
+                const dx = mouseX - currentX;
+                const dy = mouseY - currentY;
+                
+                currentX += dx * 0.2; // Slightly tighter control than 0.15
+                currentY += dy * 0.2;
+                
+                // Move Cursor Element
+                cursor.style.left = currentX + 'px';
+                cursor.style.top = currentY + 'px';
+                
+                requestAnimationFrame(renderLoop);
+            };
+            renderLoop();
+
+            // Hover Listeners for Active State
+            triggers.forEach(trigger => {
+                trigger.addEventListener('mouseenter', () => {
+                    isHovering = true;
+                    cursor.classList.add('hovered');
+                });
+                trigger.addEventListener('mouseleave', () => {
+                    isHovering = false;
+                    cursor.classList.remove('hovered');
+                });
+            });
+
+
+            // --- 4. MATRIX RAIN INTERACTION (Canvas) ---
+            const canvas = document.getElementById('bg-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            let width, height;
+            let columns;
+            let drops = [];
+            
+            const fontSize = 16;
+            const chars = "01XYZ{}[]<>/\\*&^%$#@!CT_INFOSEC"; 
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+                columns = Math.ceil(width / fontSize);
+                
+                const currentDropsLength = drops.length;
+                if (columns > currentDropsLength) {
+                    for (let i = currentDropsLength; i < columns; i++) {
+                        drops[i] = Math.random() * -100;
+                    }
+                }
+            }
+            window.addEventListener('resize', resize);
+            
+            resize();
+            for (let i = 0; i < columns; i++) {
+                drops[i] = Math.random() * -100;
+            }
+
+            function draw() {
+                // Fade effect
+                ctx.fillStyle = 'rgba(2, 2, 4, 0.05)'; 
+                ctx.fillRect(0, 0, width, height);
+
+                ctx.font = 'bold ' + fontSize + 'px "JetBrains Mono"';
+                
+                for (let i = 0; i < drops.length; i++) {
+                    const x = i * fontSize;
+                    const y = drops[i] * fontSize;
+
+                    // INTERACTION LOGIC
+                    let dist = 1000;
+                    if(mouseX > 0 && mouseY > 0) {
+                         const dx = x - mouseX;
+                         const dy = y - mouseY;
+                         dist = Math.sqrt(dx*dx + dy*dy);
+                    }
+
+                    if (dist < 150) {
+                        ctx.fillStyle = '#ffffff'; 
+                        ctx.font = 'bold ' + (fontSize + 2) + 'px "JetBrains Mono"';
+                        if(Math.random() > 0.8) ctx.fillStyle = '#ff003c'; 
+                    } else {
+                        const rand = Math.random();
+                        if (rand > 0.98) ctx.fillStyle = '#ffffff'; 
+                        else if (rand > 0.6) ctx.fillStyle = '#00ffcc'; 
+                        else ctx.fillStyle = '#7000ff'; 
+                        ctx.font = 'bold ' + fontSize + 'px "JetBrains Mono"';
+                    }
+                    
+                    const text = chars[Math.floor(Math.random() * chars.length)];
+                    ctx.fillText(text, x, y);
+
+                    if (y > height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+
+                    if (dist < 150) {
+                        drops[i] += 2; 
+                    } else {
+                        drops[i]++;
+                    }
+                }
+
+                requestAnimationFrame(draw);
+            }
+            draw();
+
+            // --- 5. TILT EFFECT FOR CARDS & SPOTLIGHT ---
+            const cards = document.querySelectorAll('.holo-card');
+
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    card.style.setProperty('--x', `${x}px`);
+                    card.style.setProperty('--y', `${y}px`);
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * -5;
+                    const rotateY = ((x - centerX) / centerX) * 5;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+                });
+            });
+
+            // --- 6. SCROLL REVEAL OBSERVER ---
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const scrollObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        scrollObserver.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+                scrollObserver.observe(el);
+            });
+
+            // --- 7. TYPEWRITER EFFECT ---
+            const typeText = document.querySelector('.typewriter');
+            if(typeText) {
+                const text = typeText.getAttribute('data-text');
+                typeText.innerText = '';
+                let i = 0;
+                function type() {
+                    if (i < text.length) {
+                        typeText.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(type, 50); 
+                    }
+                }
+                setTimeout(type, 1000); 
+            }
+
+            // --- 8. COIN FLIP LOGIC ---
+            const coinInner = document.getElementById('hero-coin');
+            if (coinInner) {
+                let currentRotationY = 0;
+                
+                function scheduleNextFlip() {
+                    // Random interval between 2 to 6 seconds
+                    const nextInterval = Math.random() * 4000 + 2000;
+                    
+                    setTimeout(() => {
+                        // Random result: true = back (MSME), false = front (CT Logo)
+                        const isBack = Math.random() > 0.5;
+                        
+                        // Add 2 to 4 full high-speed spins for momentum
+                        const extraSpins = (Math.floor(Math.random() * 3) + 2) * 360; 
+                        
+                        let targetRotation = currentRotationY + extraSpins;
+                        
+                        // Normalize the target down to an exact 0-degree offset baseline
+                        targetRotation -= (targetRotation % 360);
+                        
+                        // If it's supposed to land on the back, add 180deg
+                        if (isBack) {
+                            targetRotation += 180;
+                        }
+                        
+                        currentRotationY = targetRotation;
+                        coinInner.style.transform = `rotateY(${currentRotationY}deg)`;
+                        
+                        scheduleNextFlip(); // loop forever
+                    }, nextInterval);
+                }
+                
+                // Start the flip cycle shortly after page initialization
+                setTimeout(scheduleNextFlip, 1500);
+            }
+
+            // Apply Scramble Effects
+            const heroTitles = document.querySelectorAll('.glitch-text');
+            heroTitles.forEach(el => {
+                const scramble = new CyberScramble(el);
+                setTimeout(() => {
+                    scramble.setText(el.getAttribute('data-text')); 
+                }, 600);
+            });
+
+            // Loop Brand Name Scramble
+            const brandEl = document.getElementById('brand-scramble');
+            if (brandEl) {
+                const brandScramble = new CyberScramble(brandEl);
+                const text1 = "CT-INFOSEC";
+                const text2 = "CYBER TANTRA INFORMATION SECURITY";
+                let isText1 = true;
+
+                function loopBrandScramble() {
+                    const nextText = isText1 ? text2 : text1;
+                    brandScramble.setText(nextText).then(() => {
+                        isText1 = !isText1;
+                        setTimeout(loopBrandScramble, 4000); // Wait 4 seconds, then scramble back
+                    });
+                }
+                
+                setTimeout(loopBrandScramble, 2500); // Initial delay before first scramble starts
+            }
+
+            const sectionTitles = document.querySelectorAll('.section-title');
+            const titleObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const scramble = new CyberScramble(entry.target);
+                        scramble.setText(entry.target.innerText);
+                        titleObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            sectionTitles.forEach(el => titleObserver.observe(el));
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                const original = link.innerText;
+                const scramble = new CyberScramble(link);
+                link.addEventListener('mouseenter', () => {
+                    scramble.setText(original);
+                });
+            });
+
+            const emailLink = document.querySelector('.email-link');
+            if(emailLink) {
+                const emailObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const scramble = new CyberScramble(entry.target);
+                            scramble.setText(entry.target.getAttribute('data-text'));
+                            emailObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                emailObserver.observe(emailLink);
+
+                const scramble = new CyberScramble(emailLink);
+                emailLink.addEventListener('mouseenter', () => {
+                    emailLink.style.background = "rgba(0, 255, 204, 0.1)";
+                    emailLink.style.boxShadow = "0 0 20px rgba(0, 255, 204, 0.3)";
+                    scramble.setText(emailLink.getAttribute('data-text'));
+                });
+                emailLink.addEventListener('mouseleave', () => {
+                    emailLink.style.background = "transparent";
+                    emailLink.style.boxShadow = "none";
+                });
+            }
+        }
+    </script>
+</body>
+</html>
